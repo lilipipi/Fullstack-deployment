@@ -1,6 +1,6 @@
 /* .App {
   text-align: center;
-}
+} */
 
 .App-logo {
   height: 40vmin;
@@ -35,7 +35,7 @@
   to {
     transform: rotate(360deg);
   }
-} */
+}
 
 img {
   width: 100%;
@@ -67,9 +67,8 @@ img {
   color: red;
 }
 
-.landing {
+/* .landing {
   position: relative;
-  /* background: url("../img/showcase.jpg") no-repeat; */
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -79,7 +78,7 @@ img {
 
 .landing-inner {
   padding-top: 80px;
-}
+} */
 
 .dark-overlay {
   background-color: rgba(0, 0, 0, 0.7);
