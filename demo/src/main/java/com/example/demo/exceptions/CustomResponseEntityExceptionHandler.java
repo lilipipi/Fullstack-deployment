@@ -14,14 +14,14 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler
-    public final ResponseEntity<Object> handleProjectIdException (ProjectIdException ex, WebRequest request){
-        ProjectIdExceptionResponse exceptionResponse = new ProjectIdExceptionResponse(ex.getMessage());
+    public final ResponseEntity<Object> handleAppointmentIdException (AppointmentIdException ex, WebRequest request){
+        AppointmentIdExceptionResponse exceptionResponse = new AppointmentIdExceptionResponse(ex.getMessage());
         return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler
-    public final ResponseEntity<Object> handleProjectNotFoundException (ProjectNotFoundException ex, WebRequest request){
-        ProjectNotFoundExceptionResponse exceptionResponse = new ProjectNotFoundExceptionResponse(ex.getMessage());
+    public final ResponseEntity<Object> handleAppointmentNotFoundException (AppointmentNotFoundException ex, WebRequest request){
+        AppointmentNotFoundExceptionResponse exceptionResponse = new AppointmentNotFoundExceptionResponse(ex.getMessage());
         return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
     }
 }

@@ -9,34 +9,32 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
-public class Project {
+public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank(message = "Project name is required")
-    private String projectName;
-    @NotBlank(message = "Project Identifier is required")
+    @NotBlank(message = "Appointment name is required")
+    private String appointmentName;
+    @NotBlank(message = "Appointment Identifier is required")
     @Size(min = 4, max = 5, message = "Please use 4 to 5 characters")
     @Column(updatable = false, unique = true)
-    private String projectIdentifier;
-    @NotBlank(message = "Project description is required")
+    private String appointmentIdentifier;
+    @NotBlank(message = "Appointment description is required")
     private String description;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date startDate;
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date endDate;
+    private Date appointmentDate;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date created_At;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date updated_At;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "project")
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "appointment")
     @JsonIgnore
-    private Backlog backlog;
+    private AppointmentTaskList appointmentTaskList;
 
-    public Project() {
+    public Appointment() {
     }
 
     public Long getId() {
@@ -47,20 +45,20 @@ public class Project {
         this.id = id;
     }
 
-    public String getProjectName() {
-        return projectName;
+    public String getAppointmentName() {
+        return appointmentName;
     }
 
-    public void setProjectName(String projectName) {
-        this.projectName = projectName;
+    public void setAppointmentName(String appointmentName) {
+        this.appointmentName = appointmentName;
     }
 
-    public String getProjectIdentifier() {
-        return projectIdentifier;
+    public String getAppointmentIdentifier() {
+        return appointmentIdentifier;
     }
 
-    public void setProjectIdentifier(String projectIdentifier) {
-        this.projectIdentifier = projectIdentifier;
+    public void setAppointmentIdentifier(String appointmentIdentifier) {
+        this.appointmentIdentifier = appointmentIdentifier;
     }
 
     public String getDescription() {
@@ -71,20 +69,12 @@ public class Project {
         this.description = description;
     }
 
-    public Date getStartDate() {
-        return startDate;
+    public Date getAppointmentDate() {
+        return appointmentDate;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+    public void setAppointmentDate(Date appointmentDate) {
+        this.appointmentDate = appointmentDate;
     }
 
     public Date getCreated_At() {
@@ -103,12 +93,12 @@ public class Project {
         this.updated_At = updated_At;
     }
 
-    public Backlog getBacklog() {
-        return backlog;
+    public AppointmentTaskList getAppointmentTaskList() {
+        return appointmentTaskList;
     }
 
-    public void setBacklog(Backlog backlog) {
-        this.backlog = backlog;
+    public void setAppointmentTaskList(AppointmentTaskList appointmentTaskList) {
+        this.appointmentTaskList = appointmentTaskList;
     }
 
     @PrePersist

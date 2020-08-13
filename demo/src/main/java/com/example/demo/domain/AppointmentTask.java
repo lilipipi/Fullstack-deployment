@@ -7,34 +7,32 @@ import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 @Entity
-public class ProjectTask {
+public class AppointmentTask {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(updatable = false, unique = true)
-    private String projectSequence;
-    @NotBlank(message="please include a project summary")
+    private String appointmentSequence;
+    @NotBlank(message="please include an appointment summary")
     private String summary;
-    private String acceptanceCriteria;
     private String status;
     private Integer priority;
-    private Date dueDate;
 
-    //task Many - 1 backlog
+    //task Many - 1 appointmentTaskList
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "backlog_id", updatable = false, nullable = false)
+    @JoinColumn(name = "appointmentTaskList_id", updatable = false, nullable = false)
     @JsonIgnore
-    private Backlog backlog;
+    private AppointmentTaskList appointmentTaskList;
 
     @Column(updatable = false)
-    private String projectIdentifier;
+    private String appointmentIdentifier;
 
     //Not updating these
     private Date create_At;
     private Date update_At;
 
-    public ProjectTask() {
+    public AppointmentTask() {
     }
 
     public Long getId() {
@@ -45,12 +43,12 @@ public class ProjectTask {
         this.id = id;
     }
 
-    public String getProjectSequence() {
-        return projectSequence;
+    public String getAppointmentSequence() {
+        return appointmentSequence;
     }
 
-    public void setProjectSequence(String projectSequence) {
-        this.projectSequence = projectSequence;
+    public void setAppointmentSequence(String appointmentSequence) {
+        this.appointmentSequence = appointmentSequence;
     }
 
     public String getSummary() {
@@ -59,14 +57,6 @@ public class ProjectTask {
 
     public void setSummary(String summary) {
         this.summary = summary;
-    }
-
-    public String getAcceptanceCriteria() {
-        return acceptanceCriteria;
-    }
-
-    public void setAcceptanceCriteria(String acceptanceCriteria) {
-        this.acceptanceCriteria = acceptanceCriteria;
     }
 
     public String getStatus() {
@@ -85,20 +75,12 @@ public class ProjectTask {
         this.priority = priority;
     }
 
-    public Date getDueDate() {
-        return dueDate;
+    public String getAppointmentIdentifier() {
+        return appointmentIdentifier;
     }
 
-    public void setDueDate(Date dueDate) {
-        this.dueDate = dueDate;
-    }
-
-    public String getProjectIdentifier() {
-        return projectIdentifier;
-    }
-
-    public void setProjectIdentifier(String projectIdentifier) {
-        this.projectIdentifier = projectIdentifier;
+    public void setAppointmentIdentifier(String appointmentIdentifier) {
+        this.appointmentIdentifier = appointmentIdentifier;
     }
 
     public Date getCreate_At() {
@@ -117,12 +99,12 @@ public class ProjectTask {
         this.update_At = update_At;
     }
 
-    public Backlog getBacklog() {
-        return backlog;
+    public AppointmentTaskList getAppointmentTaskList() {
+        return appointmentTaskList;
     }
 
-    public void setBacklog(Backlog backlog) {
-        this.backlog = backlog;
+    public void setAppointmentTaskList(AppointmentTaskList appointmentTaskList) {
+        this.appointmentTaskList = appointmentTaskList;
     }
 
     @PrePersist
@@ -137,15 +119,14 @@ public class ProjectTask {
 
     @Override
     public String toString() {
-        return "ProjectTask{" +
+        return "AppointmentTask{" +
                 "id=" + id +
-                ", projectSequence='" + projectSequence + '\'' +
+                ", appointmentSequence='" + appointmentSequence + '\'' +
                 ", summary='" + summary + '\'' +
-                ", acceptanceCriteria='" + acceptanceCriteria + '\'' +
                 ", status='" + status + '\'' +
                 ", priority=" + priority +
-                ", dueDate=" + dueDate +
-                ", projectIdentifier='" + projectIdentifier + '\'' +
+                ", appointmentTaskList=" + appointmentTaskList +
+                ", appointmentIdentifier='" + appointmentIdentifier + '\'' +
                 ", create_At=" + create_At +
                 ", update_At=" + update_At +
                 '}';
