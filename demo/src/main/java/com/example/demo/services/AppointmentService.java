@@ -47,9 +47,7 @@ public class AppointmentService {
         Appointment appointment = appointmentRepo.findByAppointmentIdentifier(appointmentId.toUpperCase());
 
         if(appointment == null){
-            throw new AppointmentIdException("Appointment ID '"
-                    + appointmentId
-                    + "' does not exist");
+            throw new AppointmentIdException("Appointment ID '" + appointmentId + "' does not exist");
         }
 
         return appointment;
@@ -68,4 +66,8 @@ public class AppointmentService {
 
         appointmentRepo.delete(appointment);
     }
+
+
+
+
 }

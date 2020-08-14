@@ -110,4 +110,18 @@ public class Appointment {
     protected void onUpdate() {
         this.updated_At = new Date();
     }
+
+    @Override
+    public String toString() {
+        return "Appointment{" +
+                "id=" + id +
+                ", appointmentName='" + appointmentName + '\'' +
+                ", appointmentIdentifier='" + appointmentIdentifier + '\'' +
+                ", description='" + description + '\'' +
+                ", appointmentDate=" + appointmentDate +
+                ", created_At=" + created_At +
+                ", updated_At=" + updated_At +
+                ", appointmentTaskList=" + appointmentTaskList +
+                '}';
+    }
 }

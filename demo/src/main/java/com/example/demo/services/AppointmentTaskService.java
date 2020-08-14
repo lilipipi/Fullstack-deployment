@@ -96,7 +96,7 @@ public class AppointmentTaskService {
         return appointmentTaskRepo.save(appointmentTask);
     }
 
-    public void deleteTaskByAppointmentSequence(String appointmentTaskList_id, String task_id){
+    public AppointmentTask deleteTaskByAppointmentSequence(String appointmentTaskList_id, String task_id){
         AppointmentTask appointmentTask = findTaskByAppointmentSequence(appointmentTaskList_id, task_id);
 
 //        AppointmentTaskList appointmentTaskList = appointmentTask.getAppointmentTaskList();
@@ -105,6 +105,7 @@ public class AppointmentTaskService {
 //        appointmentTaskListRepo.save(appointmentTaskList);
 
         appointmentTaskRepo.delete(appointmentTask);
+        return appointmentTask;
     }
 
 }
