@@ -10,6 +10,7 @@ import store from "./store";
 import UpdateProject from "./components/Project/UpdateProject";
 import Login from "./components/Project/Login"
 import SignUp from"./components/Project/SignUp";
+import Business_Admin from "./components/Project/Business_Admin";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route exact path="/updateProject/:id" component={UpdateProject} />
           <Route exact path="/login.html" component={Login} />
           <Route exact path="/register.html" component={SignUp} />
+          <Route exact path="/home_a" component={Business_Admin} />
         </div>
       </Router>
     </Provider>
