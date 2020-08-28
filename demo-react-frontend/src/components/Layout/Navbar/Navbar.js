@@ -38,12 +38,7 @@ class Navbar extends Component {
             {
                 title: 'Login',
                 url: '/login.html',
-                cName: 'nav-links',
-            },
-            {
-                title: 'Register',
-                url: '/register.html',
-                cName: 'nav-links',
+                cName: 'nav-links-login',
             }
         ]
         return (
