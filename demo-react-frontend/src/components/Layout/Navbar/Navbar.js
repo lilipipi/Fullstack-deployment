@@ -8,8 +8,14 @@ class Navbar extends Component {
     handleClick = () => {
         this.setState({click: !this.state.click})
     }
-    
+    jj
+
+    isLoggedIn() {
+        return false;
+    }
+
     render() {
+        const loggedIn = this.isLoggedIn();
         const MenuItems = [
             {
                 title: 'Home',
@@ -59,6 +65,19 @@ class Navbar extends Component {
                             </li>
                         )
                     })}
+
+                    {
+                        loggedIn === true ? 
+                            <li>
+                                <p>User</p>
+                            </li>
+                        : loggedIn === false ?
+                            <>
+                            <li><a className="nav-links" href="/register.html">Sign Up</a></li>
+                            <li><a className="nav-links" href="/login.html">Login</a></li>
+                            </>
+                        : <br/>
+                    }
                 </ul>
             </nav>
         );

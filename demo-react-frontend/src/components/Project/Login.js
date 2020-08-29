@@ -41,12 +41,12 @@ class Login extends Component {
 
 
     render() {
-        
         const email = "";
         const password="";
         return (
             <Container>
             <div>
+            <h1>Login</h1>
                 <Form>
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
