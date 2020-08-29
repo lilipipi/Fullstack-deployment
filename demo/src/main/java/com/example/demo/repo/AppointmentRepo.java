@@ -11,4 +11,6 @@ public interface AppointmentRepo extends CrudRepository<Appointment, Long> {
 
     @Override
     Iterable<Appointment> findAll();
+
+    Iterable<Appointment> findAllByAppointmentOwner(String username);
 }

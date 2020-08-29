@@ -34,6 +34,12 @@ public class Appointment {
     @JsonIgnore
     private AppointmentTaskList appointmentTaskList;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
+    private User user;
+
+    private String appointmentOwner;
+
     public Appointment() {
     }
 
@@ -99,6 +105,22 @@ public class Appointment {
 
     public void setAppointmentTaskList(AppointmentTaskList appointmentTaskList) {
         this.appointmentTaskList = appointmentTaskList;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getAppointmentOwner() {
+        return appointmentOwner;
+    }
+
+    public void setAppointmentOwner(String appointmentOwner) {
+        this.appointmentOwner = appointmentOwner;
     }
 
     @PrePersist

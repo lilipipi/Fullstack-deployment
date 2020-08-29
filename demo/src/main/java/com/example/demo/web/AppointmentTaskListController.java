@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @RestController
 @RequestMapping("/api/appointmentTaskList")
@@ -24,14 +25,14 @@ public class AppointmentTaskListController {
 
     @PostMapping("/{appointmentTaskList_id}")
     public ResponseEntity<?> addPTtoAppointmentTaskList(@Valid @RequestBody AppointmentTask appointmentTask,
-                                            BindingResult result, @PathVariable String appointmentTaskList_id){
+                                                        BindingResult result, @PathVariable String appointmentTaskList_id, Principal principal){
 
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
         if(errorMap != null) {
             return errorMap;
         }
 
-        AppointmentTask appointmentTask1 = appointmentTaskService.addAppointmentTask(appointmentTaskList_id, appointmentTask);
+        AppointmentTask appointmentTask1 = appointmentTaskService.addAppointmentTask(appointmentTaskList_id, appointmentTask, principal.getName());
 
         return new ResponseEntity<AppointmentTask>(appointmentTask1, HttpStatus.CREATED);
     }

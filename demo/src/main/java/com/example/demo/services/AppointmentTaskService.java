@@ -22,11 +22,14 @@ public class AppointmentTaskService {
     @Autowired
     private AppointmentRepo appointmentRepo;
 
-    public AppointmentTask addAppointmentTask(String appointmentIdentifier, AppointmentTask appointmentTask){
+    @Autowired
+    private AppointmentService appointmentService;
+
+    public AppointmentTask addAppointmentTask(String appointmentIdentifier, AppointmentTask appointmentTask, String username){
         //Exception: appointment not found
-        try{
+
             //task is to be added to a specific appointment, appointment != null, appointmentTaskList is not null
-            AppointmentTaskList appointmentTaskList = appointmentTaskListRepo.findByAppointmentIdentifier(appointmentIdentifier);
+            AppointmentTaskList appointmentTaskList = appointmentService.findAppointmentByIdentifier(appointmentIdentifier, username).getAppointmentTaskList();  //appointmentTaskListRepo.findByAppointmentIdentifier(appointmentIdentifier);
 
             // set the appointmentTaskList to appointment task
             appointmentTask.setAppointmentTaskList(appointmentTaskList);
@@ -55,9 +58,6 @@ public class AppointmentTaskService {
                 appointmentTask.setStatus("TO_DO");
             }
             return appointmentTaskRepo.save(appointmentTask);
-        }catch (Exception e){
-            throw new AppointmentNotFoundException("Appointment not found");
-        }
     }
 
     public Iterable<AppointmentTask>findAppointmentTaskListById(String id){

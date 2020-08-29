@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @RestController
 @RequestMapping("/api/appointment")
@@ -23,32 +24,32 @@ public class AppointmentController {
     private MapValidationErrorService mapValidationErrorService;
 
     @PostMapping("")
-    public ResponseEntity<?> createNewAppointment(@Valid @RequestBody Appointment appointment, BindingResult result) {
+    public ResponseEntity<?> createNewAppointment(@Valid @RequestBody Appointment appointment, BindingResult result, Principal principal) {
 
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
         if (errorMap != null)
             return errorMap;
 
-        Appointment appointment1 = appointmentService.saveOrUpdateAppointment(appointment);
+        Appointment appointment1 = appointmentService.saveOrUpdateAppointment(appointment, principal.getName());
         return new ResponseEntity<Appointment>(appointment1, HttpStatus.CREATED);
     }
 
     @GetMapping("/{appointmentId}")
-    public ResponseEntity<?> getAppointmentById(@PathVariable String appointmentId) {
+    public ResponseEntity<?> getAppointmentById(@PathVariable String appointmentId, Principal principal) {
 
-        Appointment appointment = appointmentService.findAppointmentByIdentifier(appointmentId);
+        Appointment appointment = appointmentService.findAppointmentByIdentifier(appointmentId, principal.getName());
 
         return new ResponseEntity<Appointment>(appointment, HttpStatus.OK);
     }
 
     @GetMapping("/all")
-    public Iterable<Appointment> getAllAppointments() {
-        return appointmentService.findAllAppointment();
+    public Iterable<Appointment> getAllAppointments(Principal principal) {
+        return appointmentService.findAllAppointment(principal.getName());
     }
 
     @DeleteMapping("/{appointmentId}")
-    public ResponseEntity<?> deleteAppointment(@PathVariable String appointmentId) {
-        appointmentService.deleteAppointmentByIdentifier(appointmentId);
+    public ResponseEntity<?> deleteAppointment(@PathVariable String appointmentId, Principal principal) {
+        appointmentService.deleteAppointmentByIdentifier(appointmentId, principal.getName());
 
         return new ResponseEntity<String>("Appointment with ID '" + appointmentId + "' deleted successfully", HttpStatus.OK);
     }
