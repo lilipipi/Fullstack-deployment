@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import Dashboard from "./components/Dashboard";
-import Header from "./components/Layout/Header";
+import DashboardOwner from "./components/Pages/Business-Owner/OwnerDashboard.js";
 import HeaderNew from "./components/Layout/Navbar/Navbar.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
@@ -21,6 +21,7 @@ function App() {
         <div className="App">
           <HeaderNew />
           <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/dashboardOwner" component={DashboardOwner} />
           <Route exact path="/addProject" component={AddProject} />
           <Route exact path="/updateProject/:id" component={UpdateProject} />
           <Route exact path="/login.html" component={Login} />

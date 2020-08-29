@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import './Navbar.css'
+import * as Icons from 'react-icons/bs';
 import Logo from './icon.png'
-import {Button} from "./Button"
+
 class Navbar extends Component {
     state = {click: false}
     handleClick = () => {
@@ -26,8 +27,8 @@ class Navbar extends Component {
                 cName: 'nav-links',
             },
             {
-                title: 'Team',
-                url: '#',
+                title: 'Owner',
+                url: '/dashboardOwner',
                 cName: 'nav-links',
             },
             {
@@ -38,6 +39,7 @@ class Navbar extends Component {
             {
                 title: 'Login',
                 url: '/login.html',
+                icon: <Icons.BsPeopleCircle />,
                 cName: 'nav-links-login',
             }
         ]
@@ -52,7 +54,7 @@ class Navbar extends Component {
                         return (
                             <li key={index}> 
                                 <a className={item.cName} href={item.url}>
-                                    {item.title}
+                                    {item.icon} {item.title}
                                 </a>
                             </li>
                         )
