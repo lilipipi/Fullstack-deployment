@@ -14,7 +14,7 @@ import java.security.Principal;
 
 @RestController
 @RequestMapping("/api/appointment")
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:8080")
 public class AppointmentController {
 
     @Autowired
