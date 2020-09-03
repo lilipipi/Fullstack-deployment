@@ -1,4 +1,7 @@
 import React from 'react';
+import './Appointments.css';
+import * as IoIcons from 'react-icons/io';
+import { IconContext } from 'react-icons';
 
 const url = '/api/appointment/all';
 
@@ -31,7 +34,7 @@ class Appointments extends React.Component {
         })
             .then(res => res.json())
             .then(json => {
-                this.setState({ appotinments:json });
+                this.setState({ appointments:json });
             });
     }
     componentDidMount() {
@@ -40,20 +43,19 @@ class Appointments extends React.Component {
     
     render() {
         return (
-            <div>
-                <h1 className="text-center" style={{ marginLeft: "300px" }}> Users List</h1>
-                <table className="table table-striped" style={{ marginLeft: "400px", width: '500px'}}>
+            <div classname='container' style={{marginLeft:'400px'}}>
+                <h1><IoIcons.IoIosPaper /> Appointments</h1>
+                <table style={{width: '700px'}}>
                     <thead>
                         <tr>
-                            <td> User Id</td>
                             <td> User Email</td>
-                            <td> User Name</td>
+                            <td> Appointment</td>
                         </tr>
                     </thead>
                     <tbody>
                         {this.state.appointments.map(a => 
                                     <tr key={a.appointmentIdentifier}>
-                                        <td> {a.appointmentIdentifier}</td>
+
                                         <td> {a.appointmentOwner}</td>
                                         <td> {a.appointmentName}</td>
                                     </tr>
