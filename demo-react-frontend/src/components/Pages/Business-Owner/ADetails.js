@@ -8,20 +8,19 @@ import { Button } from "react-bootstrap";
 
 const url = '/api/appointment/all';
 
-class Appointments extends React.Component {
+class ADetails extends React.Component {
     constructor(props) {
         super(props);
-        
         this.state = {
             appointments: [],
             appointmentIdentifier: '',
             appointmentName: '',
-            description:'',
-            appointmentOwner:''
+            description: '',
+            appointmentOwner: ''
         };
     }
-    
-    
+
+
 
     fetchData() {
 
@@ -38,20 +37,21 @@ class Appointments extends React.Component {
         })
             .then(res => res.json())
             .then(json => {
-                this.setState({ appointments:json });
-                
+                this.setState({ appointments: json });
+
             });
     }
     componentDidMount() {
         this.fetchData();
     }
 
-    render() { 
+    render() {
+        let ap = Object.entries(this.state.appointments);
 
         return (
-            <div classname='container' style={{marginLeft:'400px'}}>
+            <div classname='container' style={{ marginLeft: '400px' }}>
                 <h1><IoIcons.IoIosPaper /> Appointments</h1>
-                <table style={{width: '700px'}}>
+                <table style={{ width: '700px' }}>
                     <thead>
                         <tr>
                             <td> User Email</td>
@@ -60,20 +60,20 @@ class Appointments extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {this.state.appointments.map(a => 
-                            <tr 
-                            className='appo' 
-                            key={a.appointmentIdentifier} >
-                                
+                        {this.state.appointments.map(a =>
+                            <tr
+                                className='appo'
+                                key={a.appointmentIdentifier} >
+
                                 <td> {a.appointmentOwner}</td>
                                 <td> {a.appointmentName}</td>
                                 <td className='edt'>
                                     <Button
-                                    href={`/appointment/${a.appointmentIdentifier}`}
-                                    style={{float:'right'}}>Edit</Button>
+                                        href={`/appointment/${a.appointmentIdentifier}`}
+                                        style={{ float: 'right' }}>Edit</Button>
                                 </td>
                             </tr>
-                            )}
+                        )}
                     </tbody>
                 </table>
 
@@ -83,4 +83,4 @@ class Appointments extends React.Component {
     }
 }
 
-export default Appointments
+export default ADetails
