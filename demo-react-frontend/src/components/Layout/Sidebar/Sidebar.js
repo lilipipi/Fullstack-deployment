@@ -12,7 +12,7 @@ class Sidebar extends Component{
         const SidebarData = [
             {
                 title: 'Appointments',
-                path: '/',
+                path: '/UserAppo',
                 icon: <IoIcons.IoIosPaper />,
                 cName: 'nav-text'
             },

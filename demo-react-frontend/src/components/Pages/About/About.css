@@ -33,7 +33,7 @@ body{
     background-size: 66%;
     background-color: #fdfdfd;
     overflow: hidden;
-    padding: 100px 0;
+    padding: 90px 0;
 }
 
 .inner-container{
@@ -41,7 +41,7 @@ body{
     width: 50%;
     float: right;
     background-color: #fdfdfd;
-    padding: 100px;
+    padding: 50px;
     padding-bottom: 150px;
 }
 

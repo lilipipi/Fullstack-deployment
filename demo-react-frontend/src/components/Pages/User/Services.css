@@ -14,7 +14,6 @@ h1{
     padding: 10px;
 }
 
-
 table {
 	width: 800px;
 	border-collapse: collapse;
@@ -23,7 +22,7 @@ table {
 }
 
 td {
-	padding: 15px;
+    padding: 15px;
 	background-color: rgba(255,255,255,0.2);
 	color: #fff;
 }
@@ -38,34 +37,13 @@ thead {
     transition: all 0.2s ease-out;
 }
 .edt{
-    right: 0;
+    align-content: center;
+    text-align: center;
+    width: 200px;
 }
-/* 
-thead {
-	th {
-		background-color: #55608f;
-	}
+.form-group{
+	color: white;
 }
-
-tbody {
-	tr {
-		&:hover {
-			background-color: rgba(255,255,255,0.3);
-		}
-	}
-	td {
-		position: relative;
-		&:hover {
-			&:before {
-				content: "";
-				position: absolute;
-				left: 0;
-				right: 0;
-				top: -9999px;
-				bottom: -9999px;
-				background-color: rgba(255,255,255,0.2);
-				z-index: -1;
-			}
-		}
-	}
-} */
+.form-control{
+	width: 200px;
+}

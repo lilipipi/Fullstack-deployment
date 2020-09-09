@@ -19,7 +19,7 @@ class Navbar extends Component {
         const MenuItems = [
             {
                 title: 'Home',
-                url: '/dashboard',
+                url: '/dashboardOwner',
                 cName: 'nav-links',
             },
             {
@@ -29,12 +29,7 @@ class Navbar extends Component {
             },
             {
                 title: 'Services',
-                url: '/dashboard',
-                cName: 'nav-links',
-            },
-            {
-                title: 'Owner',
-                url: '/dashboardOwner',
+                url: '/serviceDash',
                 cName: 'nav-links',
             },
             {
