@@ -38,12 +38,22 @@ class UApt extends Component {
         })
             .then(res => res.json())
             .then(json => {
-                this.setState({ details: json });
+                this.setState({ 
+                    appointmentName: json.appointmentName,
+                    description: json.description,
+                    appointmentDate: json.appointmentDate
+                 });
 
             });
     }
     changeNameHandler = (event) => {
         this.setState({ appointmentName: event.target.value });
+    }
+    changeDesHandler = (event) => {
+        this.setState({ description: event.target.value });
+    }
+    changeDateHandler = (event) => {
+        this.setState({ appointmentDate: event.target.value });
     }
     validate = () => {
         let nameError = '';
@@ -77,11 +87,12 @@ class UApt extends Component {
     }
     SaveData(){
         let h = new Headers();
-        h.append('Accept', 'application/json');
-
         let encoded = window.btoa('email@email.com:password');
         let auth = 'Basic ' + encoded;
+
+        h.append('Accept', 'application/json');
         h.append('Authorization', auth);
+        
         fetch(url + '/' + this.state.id, {
             method: 'put',
             headers: h,
@@ -103,17 +114,19 @@ class UApt extends Component {
                         <div className="form-group">
                             <label> Name: </label>
                             <input type="text" placeholder="Name" name="appointmentName" className="form-control"
-                                value={this.state.details.appointmentName} onChange={this.changeNameHandler} />
+                                value={this.state.appointmentName} onChange={this.changeNameHandler} />
                         </div>
                         <div className="form-group">
                             <label> Description: </label>
                             <input placeholder="Description" name="Description" className="form-control"
-                                value={this.state.details.description}  />
+                                value={this.state.description}
+                                onChange={this.changeDesHandler}  />
                         </div>
                         <div className="form-group">
                             <label> Date: </label>
                             <input placeholder="Date" name="Date" className="form-control"
-                                value={this.state.details.appointmentDate} />
+                                value={this.state.appointmentDate}
+                                onChange={this.changeDateHandler} />
                         </div>
                         <Button className="btn btn-success" onClick={this.SaveData}>Save</Button>
                     </form>

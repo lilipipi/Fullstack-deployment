@@ -38,31 +38,41 @@ class UApt extends Component {
 
             });
     }
-    // delete(id) {
-    //     if (window.confirm('Do you want to delete?')) {
-    //         fetch(url+id, {
-    //             method: 'delete'
-    //         }).then(json => this.fetchData())
-    //     }
-    // }
     delete(id) {
-        return axios.delete(url + id, {
-            withCredentials: true,
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            }
-        }, {
-            auth: {
-                username: "email@email.com",
-                password: "password"
-            }
-        }).then(function (response) {
-            console.log('Authenticated');
-        }).catch(function (error) {
-            console.log('Error on Authentication');
-        });
+        let h = new Headers();
+        let encoded = window.btoa('email@email.com:password');
+        let auth = 'Basic ' + encoded;
+        
+        h.append('Accept', 'application/json');
+        h.append('Authorization', auth);
+        if (window.confirm('Do you want to delete?')) {
+            fetch(url+id, {
+                method: 'delete',
+                headers: h
+            })
+            .then(json => this.fetchData())
+            .then(function (response) {
+            console.log('Authenticated')});
+        }
     }
+    // delete(id) {
+    //     return axios.delete(url + id, {
+    //         withCredentials: true,
+    //         headers: {
+    //             "Accept": "application/json",
+    //             "Content-Type": "application/json"
+    //         }
+    //     }, {
+    //         auth: {
+    //             username: "email@email.com",
+    //             password: "password"
+    //         }
+    //     }).then(function (response) {
+    //         console.log('Authenticated')
+    //     }).catch(function (error) {
+    //         console.log('Error on Authentication');
+    //     });
+    // }
 
     componentDidMount() {
         this.fetchData();
