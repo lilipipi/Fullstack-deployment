@@ -67,6 +67,7 @@ class Navbar extends Component {
                     })}
 
                     {
+                        /*
                         loggedIn === true ? 
                             <li>
                                 <p>User</p>
@@ -77,6 +78,7 @@ class Navbar extends Component {
                             <li><a className="nav-links" href="/login.html">Login</a></li>
                             </>
                         : <br/>
+                        */
                     }
                 </ul>
             </nav>

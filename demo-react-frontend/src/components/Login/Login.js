@@ -8,41 +8,45 @@ class Login extends Component {
         super(props);
 
         this.state = {
-            email:'',
-            password:''
+            username:'',
+            password:'',
         };
 
     }
-
+    
     handleClick(event) {
-        const owner = "owner@email.com";
-        const user = "user@email.com";
-        const pass = "password";
+        
+        const requestOptions = {
+            method: 'POST',
+            headers: { 
+                'Accept': 'application/json',
+                'Content-Type': 'application/json' },
+            body: JSON.stringify({ 
+                username: this.state.username,
+                password: this.state.password,
+            })
+        };
 
-        const email = this.state.email;
-        const password = this.state.password;
-
-
-        if(email.match(owner) && password.match(pass)) {
-            console.log("Business Owner");
-            this.props.history.push('/home_a');
-        }
-        else if (email.match(user) && password.match(pass)) {
-            this.props.history.push('/Dashboard.html');
-        }
-        else {
-            this.toggleAlert();
-        }
+        fetch('http://localhost:8080/api/users/login', requestOptions)
+            .then(response => {
+                console.log(response.status)
+                console.log(response.json())
+                if(response.status === 200) {
+                    this.props.history.push('/home_a')
+                }
+                else {
+                    alert("Invalid Username or Password")
+                }
+            })
+            .catch(error =>{
+                alert("Error contacting server")
+            })
+        
     }
 
-    toggleAlert(event) {
-        alert("Error: User name or password does not match")
-    }
 
 
     render() {
-        const email = "";
-        const password="";
         return (
             <Container>
             <div>
@@ -50,7 +54,7 @@ class Login extends Component {
                 <Form>
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" onChange = {(event) => this.setState({email:event.target.value})}/>
+                        <Form.Control type="email" placeholder="Enter email" onChange = {(event) => this.setState({username:event.target.value})}/>
                         <Form.Text className="text-muted" >
                         </Form.Text>
                     </Form.Group>

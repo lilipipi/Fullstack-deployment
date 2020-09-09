@@ -9,7 +9,7 @@ import AddProject from "./components/Project/AddProject";
 import { Provider } from "react-redux";
 import store from "./store";
 import UpdateProject from "./components/Project/UpdateProject";
-import Login from "./components/Project/Login"
+import Login from "./components/Login/Login";
 import SignUp from"./components/Project/SignUp";
 import Business_Admin from "./components/Project/Business_Admin";
 import About from "./components/Pages/About/About";

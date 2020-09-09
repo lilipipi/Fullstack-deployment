@@ -24,6 +24,7 @@ import static com.example.demo.security.SecurityConstants.TOKEN_PREFIX;
 
 @RestController
 @RequestMapping("/api/users")
+@CrossOrigin
 public class UserController {
 
     @Autowired
