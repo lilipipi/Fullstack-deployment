@@ -19,7 +19,7 @@ class Navbar extends Component {
         const MenuItems = [
             {
                 title: 'Home',
-                url: '/dashboard',
+                url: '/dashboardOwner',
                 cName: 'nav-links',
             },
             {
@@ -29,12 +29,7 @@ class Navbar extends Component {
             },
             {
                 title: 'Services',
-                url: '/dashboard',
-                cName: 'nav-links',
-            },
-            {
-                title: 'Owner',
-                url: '/dashboardOwner',
+                url: '/serviceDash',
                 cName: 'nav-links',
             },
             {
@@ -66,8 +61,7 @@ class Navbar extends Component {
                         )
                     })}
 
-                    {
-                        /*
+                    {/*
                         loggedIn === true ? 
                             <li>
                                 <p>User</p>
@@ -77,8 +71,7 @@ class Navbar extends Component {
                             <li><a className="nav-links" href="/register.html">Sign Up</a></li>
                             <li><a className="nav-links" href="/login.html">Login</a></li>
                             </>
-                        : <br/>
-                        */
+                        : <br/>*/
                     }
                 </ul>
             </nav>
