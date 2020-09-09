@@ -33,7 +33,7 @@ class Navbar extends Component {
                 cName: 'nav-links',
             },
             {
-                title: 'Contact',
+                title: 'Contact us',
                 url: '#',
                 cName: 'nav-links',
             },

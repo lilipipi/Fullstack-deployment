@@ -16,6 +16,7 @@ import About from "./components/Pages/About/About";
 import serviceDash from "./components/Pages/User/ServiceDash.js";
 import UserAppo from "./components/Pages/User/UserDash.js";
 import AppoDetails from "./components/Pages/User/AppoDetails.js";
+import Profile_Details from "./components/Layout/Profile-Details/Profile_Details.";
 
 
 function App() {
@@ -40,6 +41,8 @@ function App() {
           <Route exact path="/register.html" component={SignUp} />
           <Route exact path="/home_a" component={Business_Admin} />
           <Route exact path="/about" component={About} />
+          <Route exact path="/profile.html" component={Profile_Details} />
+
         </div>
       </Router>
     </Provider>

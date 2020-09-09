@@ -30,7 +30,7 @@ class Sidebar extends Component{
             },
             {
                 title: 'Profile',
-                path: '/',
+                path: '/profile.html',
                 icon: <BsIcons.BsPersonFill />,
                 cName: 'nav-text'
             }
