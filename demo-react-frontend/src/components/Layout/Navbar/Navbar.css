@@ -76,6 +76,7 @@
 @media screen and (max-width: 1500px){
     .NavbarItems {
         position: relative;
+        
     }
     .nav-menu{
         display: flex;
@@ -118,9 +119,8 @@
     }
     .navbar-logo{
         /*Logo in mobile*/
-        margin-right: auto;
-        margin-top: -40px;
-        transform: translate(25%,50%);
+        margin-top: 10px;
+        margin-left: 10px;
     }
     .menu-icon{
         /*X icon*/

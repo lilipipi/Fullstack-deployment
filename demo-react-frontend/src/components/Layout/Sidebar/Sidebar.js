@@ -18,7 +18,7 @@ class Sidebar extends Component{
             },
             {
                 title: 'Create',
-                path: '/',
+                path: '/CreateAppo',
                 icon: <BsIcons.BsPlusCircle />,
                 cName: 'nav-text'
             },

@@ -16,6 +16,7 @@ import About from "./components/Pages/About/About";
 import serviceDash from "./components/Pages/User/ServiceDash.js";
 import UserAppo from "./components/Pages/User/UserDash.js";
 import AppoDetails from "./components/Pages/User/AppoDetails.js";
+import CreateAppo from "./components/Pages/User/CreateAppo.js";
 import Profile_Details from "./components/Layout/Profile-Details/Profile_Details.";
 
 
@@ -30,6 +31,7 @@ function App() {
           <Route exact path="/dashboardOwner" component={DashboardOwner} />
 
           <Route exact path="/UserAppo" component={UserAppo} />
+          <Route exact path="/CreateAppo" component={CreateAppo} />
           <Route exact path="/appointment/:id" component={AppoDetails} />
 
           <Route exact path="/serviceDash" component={serviceDash} />

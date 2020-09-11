@@ -1,6 +1,6 @@
 *{
     margin: 0;
-    padding: 0;
+    padding: 0rem;
     font-family: 'Poppins', sans-serif;
     box-sizing: border-box;
 }
@@ -33,7 +33,7 @@ body{
     background-size: 66%;
     background-color: #fdfdfd;
     overflow: hidden;
-    padding: 90px 0;
+    padding: 104px;
 }
 
 .inner-container{

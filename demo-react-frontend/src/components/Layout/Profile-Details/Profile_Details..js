@@ -9,7 +9,7 @@ import * as IoIcons from 'react-icons/io';
 import * as BsIcons from 'react-icons/bs';
 import { IconContext } from 'react-icons';
 import { Link } from 'react-router-dom';
-
+import Sidebar from '../Sidebar/Sidebar';
 
      class Profile_Details extends Component
      {
@@ -58,8 +58,9 @@ import { Link } from 'react-router-dom';
 
              return ( 
                 
-               <Container>
-                 <div>
+               <Container fluid style={{paddingLeft:'0rem', paddingRight:'0rem'}}>
+                <Sidebar />
+                 <div className="body">
                      <h1>Profile Details</h1>
                      <h3>Personal information</h3>
                      <div>
