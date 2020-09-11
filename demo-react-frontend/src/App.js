@@ -20,6 +20,7 @@ import CreateAppo from "./components/Pages/User/CreateAppo.js";
 import Profile_Details from "./components/Layout/Profile-Details/Profile_Details.";
 
 
+
 function App() {
   return (
     <Provider store={store}>
@@ -44,6 +45,7 @@ function App() {
           <Route exact path="/home_a" component={Business_Admin} />
           <Route exact path="/about" component={About} />
           <Route exact path="/profile.html" component={Profile_Details} />
+
 
         </div>
       </Router>
