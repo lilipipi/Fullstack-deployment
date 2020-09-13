@@ -36,7 +36,7 @@ import static com.example.demo.security.SecurityConstants.TOKEN_PREFIX;
 
 @RestController
 @RequestMapping("/api/users")
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin
 public class UserController {
 
     @Autowired

@@ -19,6 +19,7 @@ import AppoDetails from "./components/Pages/User/AppoDetails.js";
 
 
 function App() {
+
   return (
     <Provider store={store}>
       <Router>
