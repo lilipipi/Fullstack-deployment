@@ -23,9 +23,8 @@ class UApt extends Component {
 
         let h = new Headers();
         h.append('Accept', 'application/json');
-
-        let encoded = window.btoa('email@email.com:password');
-        let auth = 'Basic ' + encoded;
+        let token = 'ZW1haWxAZW1haWwuY29tOnBhc3N3b3Jk';
+        let auth = 'Basic ' + token;
         h.append('Authorization', auth);
 
         fetch(url + 'all', {
@@ -36,7 +35,8 @@ class UApt extends Component {
             .then(json => {
                 this.setState({ appointments: json });
 
-            });
+            })
+            .then(console.log("Token: "+token));
     }
     delete(id) {
         let h = new Headers();
@@ -55,24 +55,7 @@ class UApt extends Component {
             console.log('Authenticated')});
         }
     }
-    // delete(id) {
-    //     return axios.delete(url + id, {
-    //         withCredentials: true,
-    //         headers: {
-    //             "Accept": "application/json",
-    //             "Content-Type": "application/json"
-    //         }
-    //     }, {
-    //         auth: {
-    //             username: "email@email.com",
-    //             password: "password"
-    //         }
-    //     }).then(function (response) {
-    //         console.log('Authenticated')
-    //     }).catch(function (error) {
-    //         console.log('Error on Authentication');
-    //     });
-    // }
+
 
     componentDidMount() {
         this.fetchData();
@@ -81,7 +64,7 @@ class UApt extends Component {
     render() {
 
         return (
-            <div style={{ marginLeft: '400px' }}>
+            <div >
                 <h1><IoIcons.IoIosPaper /> Appointments</h1>
                 <table style={{ width: '700px' }} >
                     <thead>

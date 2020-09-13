@@ -19,7 +19,7 @@ class Navbar extends Component {
         const MenuItems = [
             {
                 title: 'Home',
-                url: '/dashboardOwner',
+                url: '/UserAppo',
                 cName: 'nav-links',
             },
             {
@@ -33,7 +33,7 @@ class Navbar extends Component {
                 cName: 'nav-links',
             },
             {
-                title: 'Contact',
+                title: 'Contact us',
                 url: '#',
                 cName: 'nav-links',
             },
@@ -46,7 +46,12 @@ class Navbar extends Component {
         ]
         return (
             <nav className="NavbarItems">
-                <h1 className="navbar-logo"><img className="logo" src={Logo}></img>BookInn</h1>
+                <a href='/UserAppo'>
+                    <h1 className="navbar-logo">
+                        <img className="logo" src={Logo} />
+                        BookInn
+                    </h1>
+                </a>
                 <div className="menu-icon" onClick={this.handleClick}>
                     <i className={this.state.click ? 'fas fa-times': 'fas fa-bars'}></i>
                 </div>

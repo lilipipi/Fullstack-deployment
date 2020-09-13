@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './Services.css';
-import { Button } from "react-bootstrap";
+import { Button,Container } from "react-bootstrap";
 import * as BsIcons from 'react-icons/bs';
 import * as IoIcons from 'react-icons/io';
 import Sidebar from '../../Layout/Sidebar/Sidebar';
@@ -12,8 +12,8 @@ class UApt extends Component {
         super(props)
 
         this.state = {
-            details: [],
-            id: this.props.match.params.id,
+            appointmentIdentifier: this.props.match.params.id,
+            id:'',
             appointmentName: '',
             description: '',
             appointmentDate: '',
@@ -21,6 +21,8 @@ class UApt extends Component {
         }
         this.SaveData = this.SaveData.bind(this);
         this.changeNameHandler = this.changeNameHandler.bind(this);
+        this.changeDesHandler = this.changeDesHandler.bind(this);
+        this.changeDateHandler = this.changeDateHandler.bind(this);
     }
    
     fetchData() {
@@ -32,13 +34,15 @@ class UApt extends Component {
         let auth = 'Basic ' + encoded;
         h.append('Authorization', auth);
 
-        fetch(url + '/' + this.state.id, {
+        fetch(url + '/' + this.state.appointmentIdentifier, {
             method: 'GET',
             headers: h
         })
             .then(res => res.json())
             .then(json => {
                 this.setState({ 
+                    id: json.id,
+                    appointmentIdentifier: json.appointmentIdentifier,
                     appointmentName: json.appointmentName,
                     description: json.description,
                     appointmentDate: json.appointmentDate
@@ -89,15 +93,21 @@ class UApt extends Component {
         let h = new Headers();
         let encoded = window.btoa('email@email.com:password');
         let auth = 'Basic ' + encoded;
-
+        h.append('Content-Type', 'application/json');
         h.append('Accept', 'application/json');
         h.append('Authorization', auth);
         
-        fetch(url + '/' + this.state.id, {
-            method: 'put',
+        fetch(url + '/', {
+            method: 'post',
             headers: h,
-            body: JSON.stringify({ })
-        }).then(json => this.fetchData())
+            body: JSON.stringify({
+                id: this.state.id,
+                appointmentIdentifier: this.state.appointmentIdentifier,
+                appointmentDate: this.state.appointmentDate,
+                appointmentName: this.state.appointmentName,
+                description: this.state.description
+             })
+        }).then(json => this.fetchData()).then(console.log(this.state))
     }
     componentDidMount() {
         this.fetchData();
@@ -106,10 +116,10 @@ class UApt extends Component {
     render() {
         
         return (
-            <>
+            <Container fluid style={{ padding: '0rem' }}>
             <Sidebar/>
-            <div style={{ marginLeft: '400px' }}>
-                <h1><IoIcons.IoIosPaper /> Appointment Id: {this.state.id}</h1>
+            <div style={{ marginLeft: '25%' }}>
+                <h1><IoIcons.IoIosPaper /> Appointment Id: {this.state.appointmentIdentifier}</h1>
                     <form onSubmit={this.handleSubmit}>
                         <div className="form-group">
                             <label> Name: </label>
@@ -128,11 +138,14 @@ class UApt extends Component {
                                 value={this.state.appointmentDate}
                                 onChange={this.changeDateHandler} />
                         </div>
-                        <Button className="btn btn-success" onClick={this.SaveData}>Save</Button>
+                        <Button 
+                        className="btn btn-success" 
+                        onClick={this.SaveData.bind(this, this.state.id)}
+                        href="/UserAppo">Save</Button>
                     </form>
 
             </div>
-            </>
+            </Container>
         )
     }
 }

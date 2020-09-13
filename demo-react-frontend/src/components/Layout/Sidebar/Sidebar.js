@@ -18,7 +18,7 @@ class Sidebar extends Component{
             },
             {
                 title: 'Create',
-                path: '/',
+                path: '/CreateAppo',
                 icon: <BsIcons.BsPlusCircle />,
                 cName: 'nav-text'
             },
@@ -30,7 +30,7 @@ class Sidebar extends Component{
             },
             {
                 title: 'Profile',
-                path: '/',
+                path: '/profile.html',
                 icon: <BsIcons.BsPersonFill />,
                 cName: 'nav-text'
             }
