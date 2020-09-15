@@ -29,9 +29,7 @@ class UApt extends Component {
 
         let h = new Headers();
         h.append('Accept', 'application/json');
-
-        let encoded = window.btoa('email@email.com:password');
-        let auth = 'Basic ' + encoded;
+        let auth = window.sessionStorage.getItem('token');
         h.append('Authorization', auth);
 
         fetch(url + '/' + this.state.appointmentIdentifier, {

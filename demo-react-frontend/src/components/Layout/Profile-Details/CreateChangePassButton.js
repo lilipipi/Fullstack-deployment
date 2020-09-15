@@ -82,7 +82,7 @@ class CreateChangePassButton extends Component
             </Form.Row>
              <p></p>
             <div >
-               <Button id="pButton " type="submit" value="Submit"  >
+                    <Button id="pButton " type="submit" value="Submit" style={{ marginBottom: '5%' }}>
                       Change Password
                 </Button>
             </div>

@@ -1,8 +1,8 @@
 import React, {Component} from "react";
 import {Button, Col, Container, Form} from "react-bootstrap";
 import CreateChangePassButton from './CreateChangePassButton'
-
-
+import Sidebar from '../Sidebar/Sidebar.js';
+import './Profile_Details.css';
 
      class Profile_Details extends Component
      {
@@ -47,9 +47,9 @@ import CreateChangePassButton from './CreateChangePassButton'
              return ( 
                 
                <Container fluid style={{paddingLeft:'0rem', paddingRight:'0rem'}}>
+                <Sidebar/>
                  <div className="body">
                      <h1>Profile Details</h1>
-                     <h3>Personal information</h3>
                      <div>
                        <Form id="ProfileForm"  onSubmit={this.onSubmit}>
                             <Form.Group controlId="formBasicEmail">
@@ -126,7 +126,7 @@ import CreateChangePassButton from './CreateChangePassButton'
                                     </Form.Group>
                                 </Form.Row>
                                 <br/>
-                             <Button id="updateButton" type="submit">
+                             <Button id="updateButton" type="submit" >
                                  Update
                              </Button>
                              <p></p>

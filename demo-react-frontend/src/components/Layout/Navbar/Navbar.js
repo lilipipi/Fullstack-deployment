@@ -24,7 +24,7 @@ class Navbar extends Component {
             },
             {
                 title: 'About',
-                url: '/about',
+                url: '/',
                 cName: 'nav-links',
             },
             {
@@ -46,7 +46,7 @@ class Navbar extends Component {
         ]
         return (
             <nav className="NavbarItems">
-                <a href='/UserAppo'>
+                <a href='/'>
                     <h1 className="navbar-logo">
                         <img className="logo" src={Logo} />
                         BookInn

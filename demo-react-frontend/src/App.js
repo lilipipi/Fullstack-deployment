@@ -44,7 +44,7 @@ function App() {
           <Route exact path="/login.html" component={Login} />
           <Route exact path="/register.html" component={SignUp} />
           <Route exact path="/home_a" component={Business_Admin} />
-          <Route exact path="/about" component={About} />
+          <Route exact path="/" component={About} />
           <Route exact path="/profile.html" component={Profile_Details} />
 
 

@@ -39,7 +39,7 @@ class Login extends Component {
                     response.json().then(data => {
                         console.log(data.token);
                         window.sessionStorage.setItem("token", data.token);
-                        this.props.history.push('/dashboard')
+                        this.props.history.push('/UserAppo')
                       });
                 }
                 else {

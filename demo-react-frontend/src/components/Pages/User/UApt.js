@@ -22,9 +22,8 @@ class UApt extends Component {
     fetchData() {
 
         let h = new Headers();
+        let auth = window.sessionStorage.getItem('token');
         h.append('Accept', 'application/json');
-        let token = 'ZW1haWxAZW1haWwuY29tOnBhc3N3b3Jk';
-        let auth = 'Basic ' + token;
         h.append('Authorization', auth);
 
         fetch(url + 'all', {
@@ -36,12 +35,11 @@ class UApt extends Component {
                 this.setState({ appointments: json });
 
             })
-            .then(console.log("Token: "+token));
+            .then(console.log(window.sessionStorage.getItem('token')))
     }
     delete(id) {
         let h = new Headers();
-        let encoded = window.btoa('email@email.com:password');
-        let auth = 'Basic ' + encoded;
+        let auth = window.sessionStorage.getItem('token');
         
         h.append('Accept', 'application/json');
         h.append('Authorization', auth);
