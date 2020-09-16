@@ -12,7 +12,6 @@ class UApt extends Component {
 
         this.state = {
             appointments: [],
-            token: ''
         }
         this.editAppointment = this.editAppointment.bind(this);
     }
@@ -20,8 +19,9 @@ class UApt extends Component {
         this.props.history.push(`/appointment/${id}`);
     }
     fetchData() {
-
-        let encoded = window.btoa('email@email.com:password');
+        let email = window.sessionStorage.getItem('email');
+        let pass = window.sessionStorage.getItem('password');
+        let encoded = window.btoa(email+':'+pass);
         let auth = 'Basic ' + encoded;
         let h = new Headers();
         h.append('Accept', 'application/json');
@@ -39,10 +39,13 @@ class UApt extends Component {
     }
     delete(id) {
         let h = new Headers();
-        let auth = window.sessionStorage.getItem('token');
+        let email = window.sessionStorage.getItem('email');
+        let pass = window.sessionStorage.getItem('password');
+        let encoded = window.btoa(email + ':' + pass);
+        let auth = 'Basic ' + encoded;
         
         h.append('Accept', 'application/json');
-        h.append('Authorization', this.state.token);
+        h.append('Authorization', auth);
         if (window.confirm('Do you want to delete?')) {
             fetch(url+id, {
                 method: 'delete',

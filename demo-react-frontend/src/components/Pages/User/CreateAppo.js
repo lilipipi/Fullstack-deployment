@@ -40,7 +40,10 @@ class CreateAppo extends Component {
     }
     SaveData() {
         let h = new Headers();
-        let auth = window.sessionStorage.getItem('token');
+        let email = window.sessionStorage.getItem('email');
+        let pass = window.sessionStorage.getItem('password');
+        let encoded = window.btoa(email + ':' + pass);
+        let auth = 'Basic ' + encoded;
         h.append('Content-Type', 'application/json');
         h.append('Accept', 'application/json');
         h.append('Authorization', auth);
