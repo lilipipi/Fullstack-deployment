@@ -36,6 +36,12 @@ class Navbar extends Component {
                 title: 'Contact us',
                 url: '#',
                 cName: 'nav-links',
+            },
+            {
+                title: 'Login',
+                url: '/login.html',
+                icon: <Icons.BsPeopleCircle />,
+                cName: 'nav-links-login',
             }
         ]
         return (

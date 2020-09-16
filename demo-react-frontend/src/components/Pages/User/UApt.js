@@ -15,13 +15,17 @@ class UApt extends Component {
             token: ''
         }
         this.editAppointment = this.editAppointment.bind(this);
-        this.setState.token = window.sessionStorage.getItem('token')
     }
     editAppointment(id) {
         this.props.history.push(`/appointment/${id}`);
     }
     fetchData() {
+        // let h = new Headers();
+        // h.append('Accept', 'application/json');
 
+        // let encoded = window.btoa('email@email.com:password');
+        // let auth = 'Basic ' + encoded;
+        // h.append('Authorization', auth);
         let h = new Headers();
         const auth = window.sessionStorage.getItem('token');
         h.append('Accept', 'application/json');
