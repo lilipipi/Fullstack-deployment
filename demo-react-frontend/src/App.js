@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import Dashboard from "./components/Dashboard";
 import DashboardOwner from "./components/Pages/Business-Owner/OwnerDashboard.js";
-import Navbar from "./components/Layout/Navbar/Navbar.js";
+import HeaderNew from "./components/Layout/Navbar/Navbar.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import AddProject from "./components/Project/AddProject";
@@ -27,8 +27,6 @@ function App() {
   return (
     <>
     <Provider store={store}>
-      <Navbar />
-
       <Router>
         <div className="App">
           <HeaderNew loggedIn={ window.sessionStorage.getItem('loggedIn') }/>
