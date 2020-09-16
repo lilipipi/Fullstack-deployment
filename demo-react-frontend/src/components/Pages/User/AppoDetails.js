@@ -4,6 +4,7 @@ import { Button,Container } from "react-bootstrap";
 import * as BsIcons from 'react-icons/bs';
 import * as IoIcons from 'react-icons/io';
 import Sidebar from '../../Layout/Sidebar/Sidebar';
+import Header from '../../Layout/Navbar/Navbar'
 
 const url = '/api/appointment';
 
@@ -29,9 +30,7 @@ class UApt extends Component {
 
         let h = new Headers();
         h.append('Accept', 'application/json');
-
-        let encoded = window.btoa('email@email.com:password');
-        let auth = 'Basic ' + encoded;
+        let auth = window.sessionStorage.getItem('token');
         h.append('Authorization', auth);
 
         fetch(url + '/' + this.state.appointmentIdentifier, {
@@ -117,6 +116,7 @@ class UApt extends Component {
         
         return (
             <Container fluid style={{ padding: '0rem' }}>
+                <Header/>
             <Sidebar/>
             <div style={{ marginLeft: '25%' }}>
                 <h1><IoIcons.IoIosPaper /> Appointment Id: {this.state.appointmentIdentifier}</h1>

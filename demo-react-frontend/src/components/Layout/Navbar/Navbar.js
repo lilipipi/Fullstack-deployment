@@ -111,7 +111,7 @@ class Navbar extends Component {
 
         return (
             <nav className="NavbarItems">
-                <a href='/UserAppo'>
+                <a href='/about'>
                     <h1 className="navbar-logo">
                         <img className="logo" src={Logo} />
                         BookInn

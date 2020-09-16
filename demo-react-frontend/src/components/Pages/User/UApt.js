@@ -3,7 +3,6 @@ import './Services.css';
 import { Button } from "react-bootstrap";
 import * as BsIcons from 'react-icons/bs';
 import * as IoIcons from 'react-icons/io';
-import axios from 'axios';
 
 const url = '/api/appointment/';
 
@@ -12,7 +11,8 @@ class UApt extends Component {
         super(props)
 
         this.state = {
-            appointments: []
+            appointments: [],
+            token: ''
         }
         this.editAppointment = this.editAppointment.bind(this);
     }
@@ -20,11 +20,15 @@ class UApt extends Component {
         this.props.history.push(`/appointment/${id}`);
     }
     fetchData() {
+        // let h = new Headers();
+        // h.append('Accept', 'application/json');
 
+        // let encoded = window.btoa('email@email.com:password');
+        // let auth = 'Basic ' + encoded;
+        // h.append('Authorization', auth);
         let h = new Headers();
+        const auth = window.sessionStorage.getItem('token');
         h.append('Accept', 'application/json');
-        let token = 'ZW1haWxAZW1haWwuY29tOnBhc3N3b3Jk';
-        let auth = 'Basic ' + token;
         h.append('Authorization', auth);
 
         fetch(url + 'all', {
@@ -36,15 +40,14 @@ class UApt extends Component {
                 this.setState({ appointments: json });
 
             })
-            .then(console.log("Token: "+token));
+            .then(console.log(window.sessionStorage.getItem('token')))
     }
     delete(id) {
         let h = new Headers();
-        let encoded = window.btoa('email@email.com:password');
-        let auth = 'Basic ' + encoded;
+        let auth = window.sessionStorage.getItem('token');
         
         h.append('Accept', 'application/json');
-        h.append('Authorization', auth);
+        h.append('Authorization', this.state.token);
         if (window.confirm('Do you want to delete?')) {
             fetch(url+id, {
                 method: 'delete',

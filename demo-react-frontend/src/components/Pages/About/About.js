@@ -1,10 +1,13 @@
 import React, {Component} from "react";
+import Header from '../../Layout/Navbar/Header.js';
 import './About.css'
 
 class About extends Component{
 
     render() {
         return(
+            <>
+            <Header/>
             <div className="about-section">
                 <div className="inner-container">
                     <h1 style={{color:'black'}}>Save your time</h1>
@@ -17,10 +20,11 @@ class About extends Component{
                         <span>All-Online</span>
                     </div>
                     <a href="/login.html">
-                    <div className="StartNow" onClick="/#">Start Now</div>
+                        <button className="StartNow">Start Now</button>
                     </a>
                 </div>
             </div>
+            </>
         );
     }
 }

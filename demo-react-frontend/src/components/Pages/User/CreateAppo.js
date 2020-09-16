@@ -4,6 +4,7 @@ import { Button } from "react-bootstrap";
 import * as BsIcons from 'react-icons/bs';
 import * as IoIcons from 'react-icons/io';
 import Sidebar from '../../Layout/Sidebar/Sidebar';
+import Header from '../../Layout/Navbar/Navbar'
 
 const url = '/api/appointment';
 
@@ -39,8 +40,7 @@ class CreateAppo extends Component {
     }
     SaveData() {
         let h = new Headers();
-        let encoded = window.btoa('email@email.com:password');
-        let auth = 'Basic ' + encoded;
+        let auth = window.sessionStorage.getItem('token');
         h.append('Content-Type', 'application/json');
         h.append('Accept', 'application/json');
         h.append('Authorization', auth);
@@ -64,6 +64,7 @@ class CreateAppo extends Component {
 
         return (
             <>
+                <Header/>
                 <Sidebar />
                 <div style={{ marginLeft: '25%' }}>
                     <h1><IoIcons.IoIosPaper /> Book an Appointment: </h1>
