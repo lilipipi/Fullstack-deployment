@@ -31,8 +31,12 @@ class UApt extends Component {
         let h = new Headers();
 
         let email = window.sessionStorage.getItem('email');
-        let pass = window.sessionStorage.getItem('password');
-        let encoded = window.btoa(email + ':' + pass);
+        const Cryptr = require('cryptr');
+        const cryptr = new Cryptr('keyword');
+        let encryptedString = window.sessionStorage.getItem('encrypted');
+        const decryptedString = cryptr.decrypt(encryptedString);
+        console.log(decryptedString);
+        let encoded = window.btoa(email + ':' + decryptedString);
         let auth = 'Basic ' + encoded;
         h.append('Accept', 'application/json');
         h.append('Authorization', auth);
@@ -95,8 +99,12 @@ class UApt extends Component {
     SaveData(){
         let h = new Headers();
         let email = window.sessionStorage.getItem('email');
-        let pass = window.sessionStorage.getItem('password');
-        let encoded = window.btoa(email + ':' + pass);
+        const Cryptr = require('cryptr');
+        const cryptr = new Cryptr('keyword');
+        let encryptedString = window.sessionStorage.getItem('encrypted');
+        const decryptedString = cryptr.decrypt(encryptedString);
+        console.log(decryptedString);
+        let encoded = window.btoa(email + ':' + decryptedString);
         let auth = 'Basic ' + encoded;
         h.append('Content-Type', 'application/json');
         h.append('Accept', 'application/json');

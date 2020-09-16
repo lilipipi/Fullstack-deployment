@@ -67,7 +67,7 @@ class Navbar extends Component {
                 },
                 {
                     title: 'Contact us',
-                    url: '#',
+                    url: '/contact',
                     cName: 'nav-links',
                 },
                 {

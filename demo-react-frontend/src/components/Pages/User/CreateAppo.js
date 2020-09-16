@@ -41,8 +41,12 @@ class CreateAppo extends Component {
     SaveData() {
         let h = new Headers();
         let email = window.sessionStorage.getItem('email');
-        let pass = window.sessionStorage.getItem('password');
-        let encoded = window.btoa(email + ':' + pass);
+        const Cryptr = require('cryptr');
+        const cryptr = new Cryptr('keyword');
+        let encryptedString = window.sessionStorage.getItem('encrypted');
+        const decryptedString = cryptr.decrypt(encryptedString);
+        console.log(decryptedString);
+        let encoded = window.btoa(email + ':' + decryptedString);
         let auth = 'Basic ' + encoded;
         h.append('Content-Type', 'application/json');
         h.append('Accept', 'application/json');
@@ -67,7 +71,6 @@ class CreateAppo extends Component {
 
         return (
             <>
-                <Header/>
                 <Sidebar />
                 <div style={{ marginLeft: '25%' }}>
                     <h1><IoIcons.IoIosPaper /> Book an Appointment: </h1>

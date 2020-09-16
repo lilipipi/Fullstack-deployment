@@ -20,12 +20,19 @@ class UApt extends Component {
     }
     fetchData() {
         let email = window.sessionStorage.getItem('email');
-        let pass = window.sessionStorage.getItem('password');
-        let encoded = window.btoa(email+':'+pass);
+        //encrypted password
+        const Cryptr = require('cryptr');
+        const cryptr = new Cryptr('keyword');
+        let encryptedString = window.sessionStorage.getItem('encrypted');
+        const decryptedString = cryptr.decrypt(encryptedString);
+        console.log(decryptedString);
+        let encoded = window.btoa(email + ':' + decryptedString);
         let auth = 'Basic ' + encoded;
         let h = new Headers();
         h.append('Accept', 'application/json');
         h.append('Authorization', auth);
+
+        
 
         fetch(url + 'all', {
             method: 'GET',
@@ -40,8 +47,12 @@ class UApt extends Component {
     delete(id) {
         let h = new Headers();
         let email = window.sessionStorage.getItem('email');
-        let pass = window.sessionStorage.getItem('password');
-        let encoded = window.btoa(email + ':' + pass);
+        const Cryptr = require('cryptr');
+        const cryptr = new Cryptr('keyword');
+        let encryptedString = window.sessionStorage.getItem('encrypted');
+        const decryptedString = cryptr.decrypt(encryptedString);
+        console.log(decryptedString);
+        let encoded = window.btoa(email + ':' + decryptedString);
         let auth = 'Basic ' + encoded;
         
         h.append('Accept', 'application/json');

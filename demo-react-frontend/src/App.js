@@ -19,6 +19,7 @@ import UserAppo from "./components/Pages/User/UserDash.js";
 import AppoDetails from "./components/Pages/User/AppoDetails.js";
 import CreateAppo from "./components/Pages/User/CreateAppo.js";
 import Profile_Details from "./components/Layout/Profile-Details/Profile_Details.";
+import Contact from './components/Pages/Contact/Contact.js';
 
 
 
@@ -49,7 +50,7 @@ function App() {
           <Route exact path="/" component={About} />
           <Route exact path="/about" component={Aboutpage} />
           <Route exact path="/profile.html" component={Profile_Details} />
-
+          <Route exact path="/contact" component={Contact} />
 
         </div>
       </Router>

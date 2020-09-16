@@ -42,7 +42,13 @@ class Login extends Component {
                         window.sessionStorage.setItem("token", data.token);
                         window.sessionStorage.setItem("loggedIn", true);
                         window.sessionStorage.setItem("email", this.state.username);
-                        window.sessionStorage.setItem("password", this.state.password);
+
+                        const Cryptr = require('cryptr');
+                        const cryptr = new Cryptr('keyword');
+
+                        const encryptedString = cryptr.encrypt(this.state.password);
+                        window.sessionStorage.setItem("encrypted", encryptedString);
+
                         this.props.history.push('/UserAppo')
                         window.location.reload(true);
                         //return <Redirect to='/UserAppo' />
