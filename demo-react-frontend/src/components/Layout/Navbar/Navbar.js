@@ -4,18 +4,20 @@ import * as Icons from 'react-icons/bs';
 import Logo from './icon.png'
 
 class Navbar extends Component {
-    state = {click: false}
+    constructor(props) {
+        super(props);
+        this.state = {
+            click: false,
+            loggedIn: this.props.loggedIn
+        }
+    }
+    
     handleClick = () => {
         this.setState({click: !this.state.click})
     }
-    jj
-
-    isLoggedIn() {
-        return false;
-    }
 
     render() {
-        const loggedIn = this.isLoggedIn();
+        /*
         const MenuItems = [
             {
                 title: 'Home',
@@ -44,6 +46,64 @@ class Navbar extends Component {
                 cName: 'nav-links-login',
             }
         ]
+        */
+        var MenuItems = []
+        if (this.state.loggedIn) {
+            MenuItems = [
+                {
+                    title: 'Home',
+                    url: '/UserAppo',
+                    cName: 'nav-links',
+                },
+                {
+                    title: 'About',
+                    url: '/about',
+                    cName: 'nav-links',
+                },
+                {
+                    title: 'Services',
+                    url: '/serviceDash',
+                    cName: 'nav-links',
+                },
+                {
+                    title: 'Contact us',
+                    url: '#',
+                    cName: 'nav-links',
+                },
+                {
+                    title: 'Logout',
+                    url: '#',
+                    icon: <Icons.BsBoxArrowRight />,
+                    cName: 'nav-links-login',
+                }
+            ]
+        }
+        else {
+            MenuItems = [
+                {
+                    title: 'About',
+                    url: '/about',
+                    cName: 'nav-links',
+                },
+                {
+                    title: 'Services',
+                    url: '/serviceDash',
+                    cName: 'nav-links',
+                },
+                {
+                    title: 'Contact us',
+                    url: '#',
+                    cName: 'nav-links',
+                },
+                {
+                    title: 'Login',
+                    url: '/login.html',
+                    icon: <Icons.BsPeopleCircle />,
+                    cName: 'nav-links-login',
+                }
+            ]
+        }
+
         return (
             <nav className="NavbarItems">
                 <a href='/about'>
@@ -66,18 +126,6 @@ class Navbar extends Component {
                         )
                     })}
 
-                    {/*
-                        loggedIn === true ? 
-                            <li>
-                                <p>User</p>
-                            </li>
-                        : loggedIn === false ?
-                            <>
-                            <li><a className="nav-links" href="/register.html">Sign Up</a></li>
-                            <li><a className="nav-links" href="/login.html">Login</a></li>
-                            </>
-                        : <br/>*/
-                    }
                 </ul>
             </nav>
         );

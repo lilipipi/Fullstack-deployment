@@ -7,7 +7,6 @@ class About extends Component{
     render() {
         return(
             <>
-            <Header/>
             <div className="about-section">
                 <div className="inner-container">
                     <h1 style={{color:'black'}}>Save your time</h1>

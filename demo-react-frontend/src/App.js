@@ -25,11 +25,13 @@ import Profile_Details from "./components/Layout/Profile-Details/Profile_Details
 function App() {
 
   return (
+    <>
     <Provider store={store}>
       <Navbar />
 
       <Router>
         <div className="App">
+          <HeaderNew loggedIn={ window.sessionStorage.getItem('loggedIn') }/>
           <Route exact path="/dashboard" component={Dashboard} />
           
           <Route exact path="/dashboardOwner" component={DashboardOwner} />
@@ -54,6 +56,7 @@ function App() {
         </div>
       </Router>
     </Provider>
+    </>
   );
 }
 

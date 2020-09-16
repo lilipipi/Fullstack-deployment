@@ -1,4 +1,5 @@
-import React, { Component, Redirect } from "react";
+import React, { Component } from "react";
+import  { Redirect } from 'react-router-dom'
 import { Button, Form, Container, Row } from "react-bootstrap";
 import { FormGroup, FormControl, FormLabel} from "react-bootstrap";
 
@@ -37,9 +38,14 @@ class Login extends Component {
             .then(response => {
                 if(response.status === 200) {
                     response.json().then(data => {
-                        console.log(data.token);
+                        //console.log(data.token);
                         window.sessionStorage.setItem("token", data.token);
+                        window.sessionStorage.setItem("loggedIn", true);
+                        window.sessionStorage.setItem("email", this.state.username);
+                        window.sessionStorage.setItem("password", this.state.password);
                         this.props.history.push('/UserAppo')
+                        window.location.reload(true);
+                        //return <Redirect to='/UserAppo' />
                       });
                 }
                 else {
@@ -59,7 +65,9 @@ class Login extends Component {
                     response.json().then(data => {
                         console.log(data.token);
                         window.sessionStorage.setItem("token", data.token);
+                        window.sessionStorage.setItem("loggedIn", true);
                         this.props.history.push('/dashboardOwner')
+                        window.location.reload(true);
                       }); 
                 }
                 else {
