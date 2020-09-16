@@ -27,7 +27,7 @@
 .nav-menu {
     /*Menu bar*/
     display: grid;
-    grid-template-columns: repeat(7,auto);
+    grid-template-columns: repeat(6,auto);
     grid-gap: 10px;
     list-style: none;
     text-align: center;
@@ -51,10 +51,23 @@
     color: white;
     text-decoration: none;
     padding: 0.5rem 1rem;
-    margin-left: 400px;
+    margin-left: 700px;
 }
 
 .nav-links-login:hover{
+    background: #fff;
+    border-radius: 4px;
+    transition: all 0.2s ease-out;
+    text-decoration: none;
+}
+.nav-links-logout {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    margin-left: 600px;
+}
+
+.nav-links-logout:hover{
     background: #fff;
     border-radius: 4px;
     transition: all 0.2s ease-out;
