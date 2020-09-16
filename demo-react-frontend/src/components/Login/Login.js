@@ -41,6 +41,8 @@ class Login extends Component {
                         //console.log(data.token);
                         window.sessionStorage.setItem("token", data.token);
                         window.sessionStorage.setItem("loggedIn", true);
+                        window.sessionStorage.setItem("email", this.state.username);
+                        window.sessionStorage.setItem("password", this.state.password);
                         this.props.history.push('/UserAppo')
                         window.location.reload(true);
                         //return <Redirect to='/UserAppo' />

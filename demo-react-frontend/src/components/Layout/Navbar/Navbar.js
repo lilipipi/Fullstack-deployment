@@ -81,11 +81,6 @@ class Navbar extends Component {
         else {
             MenuItems = [
                 {
-                    title: 'Home',
-                    url: '/UserAppo',
-                    cName: 'nav-links',
-                },
-                {
                     title: 'About',
                     url: '/about',
                     cName: 'nav-links',

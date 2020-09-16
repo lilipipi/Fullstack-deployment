@@ -8,7 +8,6 @@ class UserDash extends Component {
     render() {
         return (
             <Container fluid style={{padding:'0rem'}}>
-                <Navbar/>
                 <Sidebar/>
                 <div style={{marginLeft:'25%'}}>
                 <Appointments/>
