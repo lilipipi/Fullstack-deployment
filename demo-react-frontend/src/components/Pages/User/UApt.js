@@ -20,14 +20,10 @@ class UApt extends Component {
         this.props.history.push(`/appointment/${id}`);
     }
     fetchData() {
-        // let h = new Headers();
-        // h.append('Accept', 'application/json');
 
-        // let encoded = window.btoa('email@email.com:password');
-        // let auth = 'Basic ' + encoded;
-        // h.append('Authorization', auth);
+        let encoded = window.btoa('email@email.com:password');
+        let auth = 'Basic ' + encoded;
         let h = new Headers();
-        const auth = window.sessionStorage.getItem('token');
         h.append('Accept', 'application/json');
         h.append('Authorization', auth);
 
@@ -40,7 +36,6 @@ class UApt extends Component {
                 this.setState({ appointments: json });
 
             })
-            .then(console.log(window.sessionStorage.getItem('token')))
     }
     delete(id) {
         let h = new Headers();
