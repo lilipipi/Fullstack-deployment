@@ -13,6 +13,7 @@ import Login from "./components/Login/Login";
 import SignUp from"./components/Project/SignUp";
 import Business_Admin from "./components/Project/Business_Admin";
 import About from "./components/Pages/About/About";
+import Aboutpage from "./components/Pages/About/aboutpage";
 import serviceDash from "./components/Pages/User/ServiceDash.js";
 import UserAppo from "./components/Pages/User/UserDash.js";
 import AppoDetails from "./components/Pages/User/AppoDetails.js";
@@ -27,7 +28,6 @@ function App() {
     <Provider store={store}>
       <Router>
         <div className="App">
-          <HeaderNew />
           <Route exact path="/dashboard" component={Dashboard} />
           
           <Route exact path="/dashboardOwner" component={DashboardOwner} />
@@ -45,6 +45,7 @@ function App() {
           <Route exact path="/register.html" component={SignUp} />
           <Route exact path="/home_a" component={Business_Admin} />
           <Route exact path="/" component={About} />
+          <Route exact path="/about" component={Aboutpage} />
           <Route exact path="/profile.html" component={Profile_Details} />
 
 

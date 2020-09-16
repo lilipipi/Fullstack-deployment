@@ -3,6 +3,7 @@ import {Button, Col, Container, Form} from "react-bootstrap";
 import CreateChangePassButton from './CreateChangePassButton'
 import Sidebar from '../Sidebar/Sidebar.js';
 import './Profile_Details.css';
+import Header from '../../Layout/Navbar/Navbar'
 
      class Profile_Details extends Component
      {
@@ -47,6 +48,7 @@ import './Profile_Details.css';
              return ( 
                 
                <Container fluid style={{paddingLeft:'0rem', paddingRight:'0rem'}}>
+                <Header/>
                 <Sidebar/>
                  <div className="body">
                      <h1>Profile Details</h1>

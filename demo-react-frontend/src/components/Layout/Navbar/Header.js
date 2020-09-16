@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import './Navbar.css'
+import './Header.css'
 import * as Icons from 'react-icons/bs';
 import Logo from './icon.png'
 
-class Navbar extends Component {
-    state = {click: false}
+class Header extends Component {
+    state = { click: false }
     handleClick = () => {
-        this.setState({click: !this.state.click})
+        this.setState({ click: !this.state.click })
     }
     jj
 
@@ -18,41 +18,37 @@ class Navbar extends Component {
         const loggedIn = this.isLoggedIn();
         const MenuItems = [
             {
-                title: 'Home',
-                url: '/UserAppo',
-                cName: 'nav-links',
-            },
-            {
                 title: 'About',
-                url: '/about',
-                cName: 'nav-links',
-            },
-            {
-                title: 'Services',
-                url: '/serviceDash',
+                url: '/',
                 cName: 'nav-links',
             },
             {
                 title: 'Contact us',
                 url: '#',
                 cName: 'nav-links',
+            },
+            {
+                title: 'Login',
+                url: '/login.html',
+                icon: <Icons.BsPeopleCircle />,
+                cName: 'nav-links-login',
             }
         ]
         return (
             <nav className="NavbarItems">
-                <a href='/about'>
+                <a href='/'>
                     <h1 className="navbar-logo">
                         <img className="logo" src={Logo} />
                         BookInn
                     </h1>
                 </a>
                 <div className="menu-icon" onClick={this.handleClick}>
-                    <i className={this.state.click ? 'fas fa-times': 'fas fa-bars'}></i>
+                    <i className={this.state.click ? 'fas fa-times' : 'fas fa-bars'}></i>
                 </div>
-                <ul className={this.state.click ? 'nav-menu active':'nav-menu'}>
+                <ul className={this.state.click ? 'nav-menu active' : 'nav-menu'}>
                     {MenuItems.map((item, index) => {
                         return (
-                            <li key={index}> 
+                            <li key={index}>
                                 <a className={item.cName} href={item.url}>
                                     {item.icon} {item.title}
                                 </a>
@@ -78,4 +74,4 @@ class Navbar extends Component {
     }
 }
 
-export default Navbar;
+export default Header;

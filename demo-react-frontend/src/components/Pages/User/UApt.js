@@ -3,7 +3,6 @@ import './Services.css';
 import { Button } from "react-bootstrap";
 import * as BsIcons from 'react-icons/bs';
 import * as IoIcons from 'react-icons/io';
-import axios from 'axios';
 
 const url = '/api/appointment/';
 
@@ -12,9 +11,11 @@ class UApt extends Component {
         super(props)
 
         this.state = {
-            appointments: []
+            appointments: [],
+            token: ''
         }
         this.editAppointment = this.editAppointment.bind(this);
+        this.setState.token = window.sessionStorage.getItem('token')
     }
     editAppointment(id) {
         this.props.history.push(`/appointment/${id}`);
@@ -22,7 +23,7 @@ class UApt extends Component {
     fetchData() {
 
         let h = new Headers();
-        let auth = window.sessionStorage.getItem('token');
+        const auth = window.sessionStorage.getItem('token');
         h.append('Accept', 'application/json');
         h.append('Authorization', auth);
 
@@ -42,7 +43,7 @@ class UApt extends Component {
         let auth = window.sessionStorage.getItem('token');
         
         h.append('Accept', 'application/json');
-        h.append('Authorization', auth);
+        h.append('Authorization', this.state.token);
         if (window.confirm('Do you want to delete?')) {
             fetch(url+id, {
                 method: 'delete',
