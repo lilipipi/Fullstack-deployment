@@ -1,5 +1,7 @@
 import React, {Component} from "react";
 import {Button, Col, Container, Form} from "react-bootstrap";
+import './Profile_Details.css';
+
 
 class CreateChangePassButton extends Component
 {
@@ -34,7 +36,7 @@ class CreateChangePassButton extends Component
         render(){
 
           return (              
-          <Container>             
+          <Container fluid style={{paddingLeft:'0rem', paddingRight:'0rem'}}>             
             <div>
             <Form action="/action_page.php" class="was-validated" onSubmit={this.onSubmit}>
           <Form.Row>

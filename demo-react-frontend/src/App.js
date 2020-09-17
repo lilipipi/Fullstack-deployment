@@ -10,7 +10,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 import UpdateProject from "./components/Project/UpdateProject";
 import Login from "./components/Login/Login";
-import SignUp from"./components/Project/SignUp";
+import SignUp from"./components/Pages/SingUp/SignUp";
 import Business_Admin from "./components/Project/Business_Admin";
 import About from "./components/Pages/About/About";
 import Aboutpage from "./components/Pages/About/aboutpage";
@@ -18,7 +18,7 @@ import serviceDash from "./components/Pages/User/ServiceDash.js";
 import UserAppo from "./components/Pages/User/UserDash.js";
 import AppoDetails from "./components/Pages/User/AppoDetails.js";
 import CreateAppo from "./components/Pages/User/CreateAppo.js";
-import Profile_Details from "./components/Layout/Profile-Details/Profile_Details.";
+import Profile_Details from "./components/Pages/Profile-Details/Profile_Details";
 import Contact from './components/Pages/Contact/Contact.js';
 
 
