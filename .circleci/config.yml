@@ -20,7 +20,7 @@ commands:
             sudo apt install ansible
 
 jobs:
-  ci:
+  cicd:
     machine: true
     steps:
       - checkout
@@ -41,23 +41,22 @@ jobs:
           command: |
             make down
 
+      - run:
+          name: copy project onto EC2 machine
+          command: |
+            scp -o StrictHostKeyChecking=no -r ../project ec2-user@3.81.30.66:~/
 
-      # - run:
-      #     name: copy project onto EC2 machine
-      #     command: |
-      #       scp -o StrictHostKeyChecking=no -r ./majorproject-5-wed-16-30-5 ec2-user@3.81.30.66:~/
-
-      # - run:
-      #     name: run ansible playbook
-      #     command: |
-      #       cd ansible
-      #       sudo chmod a-x inventory.yml
-      #       ansible-playbook -i inventory.yml -e 'record_host_keys=True' -u ec2-user playbook.yml
-      #     environment:
-      #       ANSIBLE_HOST_KEY_CHECKING: False
+      - run:
+          name: run ansible playbook
+          command: |
+            cd ansible
+            sudo chmod a-x inventory.yml
+            ansible-playbook -i inventory.yml -e 'record_host_keys=True' -u ec2-user playbook.yml
+          environment:
+            ANSIBLE_HOST_KEY_CHECKING: False
 
 workflows:
   version: 2
   pipeline:
     jobs:
-      - ci
+      - cicd

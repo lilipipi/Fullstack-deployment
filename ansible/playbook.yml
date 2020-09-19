@@ -6,22 +6,22 @@
     - name: install docker and docker compose
       become: yes
       command:
-        chdir: /home/ec2-user/majorproject-5-wed-16-30-5
+        chdir: /home/ec2-user/project
         cmd: ./install_docker.sh
 
-    # - name: dockerized application
-    #   become: yes
-    #   command:
-    #     chdir: /home/ec2-user/majorproject-5-wed-16-30-5
-    #     cmd: ./build.sh
+    - name: dockerized application
+      become: yes
+      command:
+        chdir: /home/ec2-user/project
+        cmd: ./build.sh
 
     - name: start docker service
       become: yes
       command:
         cmd: sudo service docker start
 
-    # - name: run the docker container
-    #   become: yes
-    #   command:
-    #     chdir: /home/ec2-user/majorproject-5-wed-16-30-5
-    #     cmd: docker-compose up -d
+    - name: run the docker container
+      become: yes
+      command:
+        chdir: /home/ec2-user/project
+        cmd: docker-compose up -d
