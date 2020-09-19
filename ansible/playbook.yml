@@ -9,16 +9,16 @@
         chdir: /home/ec2-user/project
         cmd: ./install_docker.sh
 
+    - name: start docker service
+      become: yes
+      command:
+        cmd: service docker start
+
     - name: dockerized application
       become: yes
       command:
         chdir: /home/ec2-user/project
         cmd: ./build.sh
-
-    - name: start docker service
-      become: yes
-      command:
-        cmd: service docker start
 
     - name: run the docker container
       become: yes
