@@ -36,10 +36,10 @@ jobs:
             make init
             make up
 
-      - run:
-          name: destroy aws infrastructure
-          command: |
-            make down
+      # - run:
+      #     name: destroy aws infrastructure
+      #     command: |
+      #       make down
 
       - run:
           name: copy project onto EC2 machine
