@@ -1,6 +1,8 @@
 #!/bin/bash
 set +ex
 
+cd project
+
 # build docker image for server
 cd demo && sudo docker build -t demoapp .
 cd ..
