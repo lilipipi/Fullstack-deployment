@@ -1,0 +1,34 @@
+version: "3"
+services:
+  demoapp-mysql:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=DemoAppDb
+      - MYSQL_USER=newuser
+      - MYSQL_PASSWORD=password
+    ports:
+      - 3307:3306
+
+  demoapp-main:
+    image: demoapp
+    restart: on-failure
+    depends_on:
+      - demoapp-mysql
+    ports:
+      - 8080:8080
+    environment:
+      - DATABASE_HOST=demoapp-mysql
+      - DATABASE_USER=newuser
+      - DATABASE_PASSWORD=password
+      - DATABASE_NAME=DemoAppDb
+      - DATABASE_PORT=3306
+
+  demoapp-frontend:
+    image: demoapp-frontend
+    depends_on:
+      - demoapp-main
+    ports:
+      - 3000:3000
+    tty: true
+    stdin_open: true

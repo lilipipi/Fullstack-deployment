@@ -1,0 +1,133 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: CustomUserDetailsService</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.example.demo.services</a> ]
+</div>
+
+<h1>Coverage Summary for Class: CustomUserDetailsService (com.example.demo.services)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">CustomUserDetailsService</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/ 7)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">CustomUserDetailsService$$EnhancerBySpringCGLIB$$527436e3</td>
+  </tr>
+  <tr>
+    <td class="name">CustomUserDetailsService$$EnhancerBySpringCGLIB$$527436e3$$FastClassBySpringCGLIB$$e96a289f</td>
+  </tr>
+  <tr>
+    <td class="name">CustomUserDetailsService$$FastClassBySpringCGLIB$$eb0a5f85</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/ 7)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.example.demo.services;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.example.demo.domain.User;
+<i>4</i>&nbsp;import com.example.demo.repo.UserRepo;
+<i>5</i>&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+<i>6</i>&nbsp;import org.springframework.security.core.userdetails.UserDetails;
+<i>7</i>&nbsp;import org.springframework.security.core.userdetails.UserDetailsService;
+<i>8</i>&nbsp;import org.springframework.security.core.userdetails.UsernameNotFoundException;
+<i>9</i>&nbsp;import org.springframework.stereotype.Service;
+<i>10</i>&nbsp;import org.springframework.transaction.annotation.Transactional;
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;@Service
+<b class="fc"><i>13</i>&nbsp;public class CustomUserDetailsService implements UserDetailsService {</b>
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;    @Autowired
+<i>16</i>&nbsp;    private UserRepo userRepo;
+<i>17</i>&nbsp;
+<i>18</i>&nbsp;    @Override
+<i>19</i>&nbsp;    public UserDetails loadUserByUsername(String s) {
+<b class="fc"><i>20</i>&nbsp;        User user = userRepo.findByUsername(s);</b>
+<i>21</i>&nbsp;
+<b class="fc"><i>22</i>&nbsp;        if(user==null) throw new UsernameNotFoundException(&quot;User not found&quot;);</b>
+<b class="fc"><i>23</i>&nbsp;        return user;</b>
+<i>24</i>&nbsp;    }
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;    @Transactional
+<i>27</i>&nbsp;    public User loadUserById(Long id){
+<b class="fc"><i>28</i>&nbsp;        User user = userRepo.getById(id);</b>
+<i>29</i>&nbsp;
+<b class="fc"><i>30</i>&nbsp;        if(user==null) throw new UsernameNotFoundException(&quot;User not found&quot;);</b>
+<b class="fc"><i>31</i>&nbsp;        return user;</b>
+<i>32</i>&nbsp;
+<i>33</i>&nbsp;    }
+<i>34</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-08-15 01:13</div>
+</div>
+</body>
+</html>
