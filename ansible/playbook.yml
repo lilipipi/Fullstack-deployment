@@ -7,18 +7,20 @@
       become: yes
       command:
         chdir: /home/ec2-user/project
-        cmd: chmod +x install_docker.sh && ./install_docker.sh
+        mode: u=rwX,g=rX,o=rX
+        cmd: ./install_docker.sh
 
     - name: dockerized application
       become: yes
       command:
         chdir: /home/ec2-user/project
-        cmd: chmod +x build.sh && ./build.sh
+        mode: u=rwX,g=rX,o=rX
+        cmd: build.sh && ./build.sh
 
     - name: start docker service
       become: yes
       command:
-        cmd: sudo service docker start
+        cmd: service docker start
 
     - name: run the docker container
       become: yes
