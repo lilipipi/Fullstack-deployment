@@ -6,3 +6,6 @@ up:
 
 down:
 	cd infra && terraform destroy --auto-approve
+
+init:
+	cd infra && terraform init
