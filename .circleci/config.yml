@@ -44,7 +44,7 @@ jobs:
       - run:
           name: copy project onto EC2 machine
           command: |
-            scp -o StrictHostKeyChecking=no -r ../project ec2-user@3.81.30.66:~/
+            scp -o StrictHostKeyChecking=no -r ../project ec2-user$(cd infra && terraform output instance_public_ip):~/
 
       - run:
           name: run ansible playbook
