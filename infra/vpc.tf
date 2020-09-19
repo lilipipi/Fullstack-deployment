@@ -152,7 +152,7 @@ resource "aws_security_group" "allow_http_ssh" {
 }
 
 resource "aws_lb_target_group" "sept_assignment" {
-  name     = "sept-assignment-target-group"
+  name     = "sept-assignment-target-group-v2"
   port     = 80
   protocol = "HTTP"
   vpc_id   = aws_vpc.main.id
