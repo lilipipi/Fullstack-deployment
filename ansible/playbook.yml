@@ -15,7 +15,7 @@
       command:
         chdir: /home/ec2-user/project
         mode: u=rwX,g=rX,o=rX
-        cmd: build.sh && ./build.sh
+        cmd: ./build.sh
 
     - name: start docker service
       become: yes
