@@ -5,6 +5,10 @@ resource "aws_instance" "sept_assignment" {
   vpc_security_group_ids = [aws_security_group.allow_http_ssh.id]
 
   key_name = aws_key_pair.deployer.key_name
+
+  tags = {
+    Name = "septAssignment"
+  }
 }
 
 data "template_file" "inventory" {

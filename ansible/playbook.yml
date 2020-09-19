@@ -7,14 +7,14 @@
       become: yes
       command:
         chdir: /home/ec2-user/project
-        mode: u=rwX,g=rX,o=rX
+        mode: a+x
         cmd: ./install_docker.sh
 
     - name: dockerized application
       become: yes
       command:
         chdir: /home/ec2-user/project
-        mode: u=rwX,g=rX,o=rX
+        mode: a+x
         cmd: ./build.sh
 
     - name: start docker service
