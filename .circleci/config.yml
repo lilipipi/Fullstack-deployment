@@ -21,7 +21,7 @@ commands:
             sudo apt install -y ansible
 
 jobs:
-  build:
+  ci:
     machine: true
     steps:
       - checkout
@@ -60,4 +60,4 @@ workflows:
   version: 2
   pipeline:
     jobs:
-      - build
+      - ci
