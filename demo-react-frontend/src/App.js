@@ -20,6 +20,7 @@ import AppoDetails from "./components/Pages/User/AppoDetails.js";
 import CreateAppo from "./components/Pages/User/CreateAppo.js";
 import Profile_Details from "./components/Pages/Profile-Details/Profile_Details";
 import Contact from './components/Pages/Contact/Contact.js';
+import LogOut from './components/Login/LogOut.js'
 
 
 
@@ -51,6 +52,7 @@ function App() {
           <Route exact path="/about" component={Aboutpage} />
           <Route exact path="/profile" component={Profile_Details} />
           <Route exact path="/contact" component={Contact} />
+          <Route exact path="/LogOut" component={LogOut} />
 
         </div>
       </Router>

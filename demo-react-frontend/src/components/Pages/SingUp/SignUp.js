@@ -46,16 +46,16 @@ class SignUp extends Component {
 
         fetch('http://localhost:8080/api/users/register', requestOptions)
             .then(response => {
-                if(response.status === 200) {
-                    Alert("Account Successfully Created");
+                console.log(response.json());
+                if(response.status === 200 || response.status === 201) {
+                    alert("Account successfully created")
                 }
                 else {
-                    Alert("Error Creating Account")
+                    
                 }
             })
             .catch(error =>{
                 console.log(error)
-                Alert("Error Contacting Server")
             })
 
     }

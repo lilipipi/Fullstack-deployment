@@ -72,7 +72,7 @@ class Navbar extends Component {
                 },
                 {
                     title: 'Logout',
-                    url: '#',
+                    url: '/LogOut',
                     icon: <Icons.BsBoxArrowRight />,
                     cName: 'nav-links-logout',
                 }
