@@ -97,7 +97,7 @@ class Navbar extends Component {
                 },
                 {
                     title: 'Login',
-                    url: '/login.html',
+                    url: '/login',
                     icon: <Icons.BsPeopleCircle />,
                     cName: 'nav-links-login',
                 }

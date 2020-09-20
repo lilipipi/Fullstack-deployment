@@ -30,7 +30,7 @@ class Sidebar extends Component{
             },
             {
                 title: 'Profile',
-                path: '/profile.html',
+                path: '/profile',
                 icon: <BsIcons.BsPersonFill />,
                 cName: 'nav-text'
             }
@@ -43,10 +43,10 @@ class Sidebar extends Component{
                             {SidebarData.map((item, index) => {
                                 return (
                                     <li key={index} className={item.cName}>
-                                        <Link to={item.path}>
+                                        <a href={item.path}>
                                             {item.icon}
                                             <span>{item.title}</span>
-                                        </Link>
+                                        </a>
                                     </li>
                                 );
                             })}

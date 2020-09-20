@@ -44,12 +44,12 @@ function App() {
           <Route exact path="/addProject" component={AddProject} />
           <Route exact path="/updateProject/:id" component={UpdateProject} />
 
-          <Route exact path="/login.html" component={Login} />
+          <Route exact path="/login" component={Login} />
           <Route exact path="/register.html" component={SignUp} />
           <Route exact path="/home_a" component={Business_Admin} />
           <Route exact path="/" component={About} />
           <Route exact path="/about" component={Aboutpage} />
-          <Route exact path="/profile.html" component={Profile_Details} />
+          <Route exact path="/profile" component={Profile_Details} />
           <Route exact path="/contact" component={Contact} />
 
         </div>
