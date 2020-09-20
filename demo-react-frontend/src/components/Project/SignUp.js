@@ -8,10 +8,8 @@ class SignUp extends Component {
             email: '',
             password: '',
             confirmPassword: '',
-            fName: '',
-            lName: '',
-            dateOfBirth: '',
-            type: 'customer'
+            type: 'customer',
+            businessName: ''
         };
 
         this.onChange = this.onChange.bind(this);
@@ -26,19 +24,15 @@ class SignUp extends Component {
         e.preventDefault();
         console.log(this.state);
         if(this.state.type === "business") {
-            alert("Business acount");
+            this.businessSignUp();
         }
         else if(this.state.type === "customer") {
             this.customerSignUp();
-        }
-        else if(this.state.type === "worker") {
-            alert("Worker acount");
         }
     }
 
     customerSignUp() {
         const requestOptions = {
-            mode:'no-cors',
             method: 'POST',
             headers: { 
                 'Accept': 'application/json',
@@ -52,7 +46,7 @@ class SignUp extends Component {
 
         fetch('http://localhost:8080/api/users/register', requestOptions)
             .then(response => {
-                console.log(response)
+                console.log(response.json())
             })
             .catch(error =>{
                 console.log(error)
@@ -60,9 +54,26 @@ class SignUp extends Component {
 
     }
     businessSignUp() {
+        const requestOptions = {
+            method: 'POST',
+            headers: { 
+                'Accept': 'application/json',
+                'Content-Type': 'application/json' },
+            body: JSON.stringify({ 
+                username: this.state.email,
+                password: this.state.password,
+                confirmPassword: this.state.confirmPassword,
+                businessName: this.state.businessName
+            })
+        };
 
-    }
-    workerSignUp() {
+        fetch('http://localhost:8080/api/users/BusinessRegister', requestOptions)
+            .then(response => {
+                console.log(response.json())
+            })
+            .catch(error =>{
+                console.log(error)
+            })
 
     }
 
@@ -90,57 +101,27 @@ class SignUp extends Component {
                         <input type="text" placeholder="Re-enter Password" 
                             name="confirmPassword" value={this.state.confirmPassword} onChange={this.onChange}></input>
                     </div>
-                    {/*
-                    <div className="form-group">
-                        <div class="row">
-                            <div class="col-sm">
-                                <label>First Name</label>
-                                <br/>
-                                <input type="text" placeholder="First Name" 
-                                    name="fName" value={this.state.fName} onChange={this.onChange}></input>
-                            </div>
-                            <div class="col-sm">
-                                <label>Last Name</label>
-                                <br/>
-                                <input type="text" placeholder="Last Name" 
-                                    name="lName" value={this.state.lName} onChange={this.onChange}></input>
-                            </div>  
-                            <div class="col-sm">
-                                <label>Date of Birth</label>
-                                <br/>
-                                <input form-control type="date" 
-                                    name="dateOfBirth" value={this.state.dateOfBirth} onChange={this.onChange}></input>
-                            </div>       
-                        </div> 
-                    </div>
                     <div className="form-group">
                     <label>Account Type</label>
                     <br/>
                         <select name="type" value={this.state.value} onChange={this.onChange}>
                             <option value="customer">Customer</option>
                             <option value="business">Business</option>
-                            <option value="worker">Worker</option>
                         </select>
                     </div>
-                    */}
+
                     {
                             this.state.type === "" ? 
                             <div className="default"></div>
                             : this.state.type === "business" ?
                                 <div className="form-group">
-                                    <label>Enter Business Details</label>
-
-                                    <input type="text" name="businessID"></input>
+                                    <label>Enter Business Name</label>
+                                    <br/>
+                                    <input type="text" name="businessName" placeholder="Enter Business Name"
+                                        value={this.state.businessName} onChange={this.onChange}></input>
                                 </div>
-                            :this.state.type === "worker" ?
-                            <div>
-                            <div className="form-group">
-                                    <label>Enter Business ID</label>
-                                    <input type="text" name="businessID"></input>
-                                </div>
-                            </div>
-                            : <br/>
-                        }
+                            :<br/>
+                    }
 
                     <Button type="submit" value="Submit">
                             Register
