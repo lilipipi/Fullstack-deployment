@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Form, Container, Col} from "react-bootstrap";
+import { Button, Form, Container, Col, Alert} from "react-bootstrap";
 
 class SignUp extends Component {
     constructor (props) {
@@ -46,10 +46,16 @@ class SignUp extends Component {
 
         fetch('http://localhost:8080/api/users/register', requestOptions)
             .then(response => {
-                console.log(response.json())
+                if(response.status === 200) {
+                    Alert("Account Successfully Created");
+                }
+                else {
+                    Alert("Error Creating Account")
+                }
             })
             .catch(error =>{
                 console.log(error)
+                Alert("Error Contacting Server")
             })
 
     }
@@ -69,12 +75,11 @@ class SignUp extends Component {
 
         fetch('http://localhost:8080/api/users/BusinessRegister', requestOptions)
             .then(response => {
-                console.log(response.json())
+                console.log(response)
             })
             .catch(error =>{
                 console.log(error)
             })
-
     }
 
     render () {
@@ -109,18 +114,17 @@ class SignUp extends Component {
                             <option value="business">Business</option>
                         </select>
                     </div>
-
                     {
-                            this.state.type === "" ? 
-                            <div className="default"></div>
-                            : this.state.type === "business" ?
-                                <div className="form-group">
-                                    <label>Enter Business Name</label>
-                                    <br/>
-                                    <input type="text" name="businessName" placeholder="Enter Business Name"
-                                        value={this.state.businessName} onChange={this.onChange}></input>
+                        this.state.type === "" ? 
+                        <div className="default"></div>
+                        : this.state.type === "business" ?
+                            <div className="form-group">
+                                <label>Enter Business Details</label>
+                                <br/>
+                                <input type="text" name="businessName" placeholder="Enter Business Name"
+                                    value={this.state.businessName} onChange={this.onChange}></input>
                                 </div>
-                            :<br/>
+                        : <br/>
                     }
 
                     <Button type="submit" value="Submit">

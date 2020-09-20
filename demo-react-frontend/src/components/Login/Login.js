@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import  { Redirect } from 'react-router-dom'
 import { Button, Form, Container, Row } from "react-bootstrap";
 import { FormGroup, FormControl, FormLabel} from "react-bootstrap";
-
+import './Login.css';
 
 class Login extends Component {
     
@@ -42,7 +42,13 @@ class Login extends Component {
                         window.sessionStorage.setItem("token", data.token);
                         window.sessionStorage.setItem("loggedIn", true);
                         window.sessionStorage.setItem("email", this.state.username);
-                        window.sessionStorage.setItem("password", this.state.password);
+
+                        const Cryptr = require('cryptr');
+                        const cryptr = new Cryptr('keyword');
+
+                        const encryptedString = cryptr.encrypt(this.state.password);
+                        window.sessionStorage.setItem("encrypted", encryptedString);
+
                         this.props.history.push('/UserAppo')
                         window.location.reload(true);
                         //return <Redirect to='/UserAppo' />
@@ -84,37 +90,36 @@ class Login extends Component {
         return (
             <Container>
             <div>
-            <h1>Login</h1>
-                <Form>
-                    <Form.Group controlId="formBasicEmail">
-                        <Form.Label>Email address</Form.Label>
+                <Form className='login-form'>
+                    <h1>Login</h1>
+                    <Form.Group controlId="formBasicEmail" className='txtb'>
                         <Form.Control type="email" placeholder="Enter email" onChange = {(event) => this.setState({ username:event.target.value })}/>
                         <Form.Text className="text-muted" >
                         </Form.Text>
                     </Form.Group>
 
-                    <Form.Group controlId="formBasicPassword">
-                        <Form.Label>Password</Form.Label>
+                        <Form.Group controlId="formBasicPassword" className='txtb'>
                         <Form.Control type="password" placeholder="Password" onChange = {(event) => this.setState({ password:event.target.value })} />
                     </Form.Group>
 
                     <Form.Group>
-                        <Row>
-                            <Form.Label>Account:    </Form.Label>
-                            <Form.Check type="radio" label="Customer" name="accountType" value="customer"
+                        <Row className="acc-type">
+                            <Form.Label>Account:</Form.Label>
+                                <Form.Check className="acc-type" type="radio" label="Customer" name="accountType" value="customer"
                                 onChange = {(event) => this.setState({ account:event.target.value })}/>
-                            <Form.Check type="radio" label="Business" name="accountType" value="business"
+                                <Form.Check className="acc-type" type="radio" label="Business" name="accountType" value="business"
                                 onChange = {(event) => this.setState({ account:event.target.value })}/>
                         </Row>
                     </Form.Group>
                 
                     <Row>
-                        <Button variant="primary" onClick={(event) => this.handleClick(event)}>
+                        <Button variant="primary" onClick={(event) => this.handleClick(event)} className='logbtn'>
                             Login
                         </Button>
-                        <a className="nav-link " href="register.html">
-                            Sign Up
-                        </a>
+                            <div class="bottom-text">
+                                Don't have account? 
+                                <a href="/register" style={{textDecoration:'none'}}> Sign up </a>
+                            </div>
                     </Row>
                 </Form>
             </div>

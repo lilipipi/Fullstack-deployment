@@ -18,7 +18,7 @@ class About extends Component{
                         <span>Booking Appointments</span>
                         <span>All-Online</span>
                     </div>
-                    <a href="/login.html">
+                    <a href="/login">
                         <button className="StartNow">Start Now</button>
                     </a>
                 </div>

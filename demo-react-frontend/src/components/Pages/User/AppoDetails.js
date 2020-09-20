@@ -29,8 +29,16 @@ class UApt extends Component {
     fetchData() {
 
         let h = new Headers();
+
+        let email = window.sessionStorage.getItem('email');
+        const Cryptr = require('cryptr');
+        const cryptr = new Cryptr('keyword');
+        let encryptedString = window.sessionStorage.getItem('encrypted');
+        const decryptedString = cryptr.decrypt(encryptedString);
+        console.log(decryptedString);
+        let encoded = window.btoa(email + ':' + decryptedString);
+        let auth = 'Basic ' + encoded;
         h.append('Accept', 'application/json');
-        let auth = window.sessionStorage.getItem('token');
         h.append('Authorization', auth);
 
         fetch(url + '/' + this.state.appointmentIdentifier, {
@@ -90,7 +98,13 @@ class UApt extends Component {
     }
     SaveData(){
         let h = new Headers();
-        let encoded = window.btoa('email@email.com:password');
+        let email = window.sessionStorage.getItem('email');
+        const Cryptr = require('cryptr');
+        const cryptr = new Cryptr('keyword');
+        let encryptedString = window.sessionStorage.getItem('encrypted');
+        const decryptedString = cryptr.decrypt(encryptedString);
+        console.log(decryptedString);
+        let encoded = window.btoa(email + ':' + decryptedString);
         let auth = 'Basic ' + encoded;
         h.append('Content-Type', 'application/json');
         h.append('Accept', 'application/json');
@@ -116,7 +130,6 @@ class UApt extends Component {
         
         return (
             <Container fluid style={{ padding: '0rem' }}>
-                <Header/>
             <Sidebar/>
             <div style={{ marginLeft: '25%' }}>
                 <h1><IoIcons.IoIosPaper /> Appointment Id: {this.state.appointmentIdentifier}</h1>

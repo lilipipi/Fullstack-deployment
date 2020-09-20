@@ -10,7 +10,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 import UpdateProject from "./components/Project/UpdateProject";
 import Login from "./components/Login/Login";
-import SignUp from"./components/Project/SignUp";
+import SignUp from"./components/Pages/SingUp/SignUp";
 import Business_Admin from "./components/Project/Business_Admin";
 import About from "./components/Pages/About/About";
 import Aboutpage from "./components/Pages/About/aboutpage";
@@ -18,7 +18,8 @@ import serviceDash from "./components/Pages/User/ServiceDash.js";
 import UserAppo from "./components/Pages/User/UserDash.js";
 import AppoDetails from "./components/Pages/User/AppoDetails.js";
 import CreateAppo from "./components/Pages/User/CreateAppo.js";
-import Profile_Details from "./components/Layout/Profile-Details/Profile_Details.";
+import Profile_Details from "./components/Pages/Profile-Details/Profile_Details";
+import Contact from './components/Pages/Contact/Contact.js';
 
 
 
@@ -43,13 +44,13 @@ function App() {
           <Route exact path="/addProject" component={AddProject} />
           <Route exact path="/updateProject/:id" component={UpdateProject} />
 
-          <Route exact path="/login.html" component={Login} />
-          <Route exact path="/register.html" component={SignUp} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={SignUp} />
           <Route exact path="/home_a" component={Business_Admin} />
           <Route exact path="/" component={About} />
           <Route exact path="/about" component={Aboutpage} />
-          <Route exact path="/profile.html" component={Profile_Details} />
-
+          <Route exact path="/profile" component={Profile_Details} />
+          <Route exact path="/contact" component={Contact} />
 
         </div>
       </Router>

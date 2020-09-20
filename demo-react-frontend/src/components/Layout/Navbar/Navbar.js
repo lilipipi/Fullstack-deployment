@@ -67,7 +67,7 @@ class Navbar extends Component {
                 },
                 {
                     title: 'Contact us',
-                    url: '#',
+                    url: '/contact',
                     cName: 'nav-links',
                 },
                 {
@@ -92,12 +92,12 @@ class Navbar extends Component {
                 },
                 {
                     title: 'Contact us',
-                    url: '#',
+                    url: '/contact',
                     cName: 'nav-links',
                 },
                 {
                     title: 'Login',
-                    url: '/login.html',
+                    url: '/login',
                     icon: <Icons.BsPeopleCircle />,
                     cName: 'nav-links-login',
                 }

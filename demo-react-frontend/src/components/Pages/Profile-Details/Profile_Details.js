@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {Button, Col, Container, Form} from "react-bootstrap";
 import CreateChangePassButton from './CreateChangePassButton'
-import Sidebar from '../Sidebar/Sidebar.js';
+import Sidebar from '../../Layout/Sidebar/Sidebar.js';
 import './Profile_Details.css';
 import Header from '../../Layout/Navbar/Navbar'
 
@@ -42,13 +42,39 @@ import Header from '../../Layout/Navbar/Navbar'
                 console.log(changeDetails);
 
              }
+
+            //  handleClick(event) {
+            //     const requestOptions = {
+            //         mode:'no-cors',
+            //         method: 'POST',
+            //         headers: { 
+            //             'Accept': 'application/json',
+            //             'Content-Type': 'application/json' },
+            //         body: JSON.stringify({ 
+            //             email: this.state.email,
+            //             fName:  this.state.fName,
+            //             lName:  this.state.lName,
+            //             dateOfBirth: this.state.dateOfBirth,
+            //             address: this.state.address,
+            //             phone: this.state.phone,cd 
+            //         })
+            //     };
+        
+            //     fetch('http://localhost:8080/api/users/id/Profile_Details', requestOptions)
+            //         .then(response => {
+            //             console.log(response)
+            //         })
+            //         .catch(error =>{
+            //             alert("Error contacting server")
+            //         })
+        
+            // }
          
          render(){
 
              return ( 
                 
                <Container fluid style={{paddingLeft:'0rem', paddingRight:'0rem'}}>
-                <Header/>
                 <Sidebar/>
                  <div className="body">
                      <h1>Profile Details</h1>
