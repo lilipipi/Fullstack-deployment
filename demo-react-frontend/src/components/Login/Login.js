@@ -118,7 +118,7 @@ class Login extends Component {
                         </Button>
                             <div class="bottom-text">
                                 Don't have account? 
-                                <a href="#" style={{textDecoration:'none'}}> Sign up </a>
+                                <a href="/register" style={{textDecoration:'none'}}> Sign up </a>
                             </div>
                     </Row>
                 </Form>

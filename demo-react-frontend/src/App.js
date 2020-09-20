@@ -45,7 +45,7 @@ function App() {
           <Route exact path="/updateProject/:id" component={UpdateProject} />
 
           <Route exact path="/login.html" component={Login} />
-          <Route exact path="/register.html" component={SignUp} />
+          <Route exact path="/register" component={SignUp} />
           <Route exact path="/home_a" component={Business_Admin} />
           <Route exact path="/" component={About} />
           <Route exact path="/about" component={Aboutpage} />
