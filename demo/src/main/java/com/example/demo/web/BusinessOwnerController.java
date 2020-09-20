@@ -23,7 +23,7 @@ import static com.example.demo.security.SecurityConstants.TOKEN_PREFIX;
 
 @RestController
 @RequestMapping("/api/businessOwners")
-@CrossOrigin
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class BusinessOwnerController {
 
     @Autowired

@@ -24,7 +24,7 @@ import static com.example.demo.security.SecurityConstants.TOKEN_PREFIX;
 
 @RestController
 @RequestMapping("/api/users")
-@CrossOrigin
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UserController {
 
     @Autowired
