@@ -92,13 +92,14 @@ class Login extends Component {
             <div>
                 <Form className='login-form'>
                     <h1>Login</h1>
+                    
                     <Form.Group controlId="formBasicEmail" className='txtb'>
                         <Form.Control type="email" placeholder="Enter email" onChange = {(event) => this.setState({ username:event.target.value })}/>
                         <Form.Text className="text-muted" >
                         </Form.Text>
                     </Form.Group>
 
-                        <Form.Group controlId="formBasicPassword" className='txtb'>
+                    <Form.Group controlId="formBasicPassword" className='txtb'>
                         <Form.Control type="password" placeholder="Password" onChange = {(event) => this.setState({ password:event.target.value })} />
                     </Form.Group>
 

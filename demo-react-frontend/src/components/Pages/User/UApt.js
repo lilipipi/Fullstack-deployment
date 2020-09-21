@@ -3,8 +3,11 @@ import './Services.css';
 import { Button } from "react-bootstrap";
 import * as BsIcons from 'react-icons/bs';
 import * as IoIcons from 'react-icons/io';
+import urlAddress from '../../ip.json';
 
 const url = '/api/appointment/';
+console.log(urlAddress.ip)
+
 
 class UApt extends Component {
     constructor(props) {
@@ -31,6 +34,7 @@ class UApt extends Component {
         let h = new Headers();
         h.append('Accept', 'application/json');
         h.append('Authorization', auth);
+        h.append("Access-Control-Allow-Origin", "*")
 
         
 
@@ -74,7 +78,6 @@ class UApt extends Component {
     }
 
     render() {
-
         return (
             <div >
                 <h1><IoIcons.IoIosPaper /> Appointments</h1>

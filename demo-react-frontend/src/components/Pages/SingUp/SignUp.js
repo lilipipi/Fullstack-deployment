@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Button, Form, Container, Col, Alert} from "react-bootstrap";
+import './SignUp.css';
 
 class SignUp extends Component {
     constructor (props) {
@@ -84,42 +85,44 @@ class SignUp extends Component {
 
     render () {
        return (
-           <Container>
+           <Container className="register">
                 <br/>
                 <h1>Register</h1>
                 <form onSubmit={this.onSubmit}>
-                    <div className="form-group">
-                        <label>Email</label>
+
+                    <div className="form-group-register">
                         <br/>
                         <input type="email" placeholder="Enter Email" 
                             name="email" value={this.state.email} onChange={this.onChange}></input>
                     </div>
-                    <div className="form-group">
-                        <label>Password</label>
+
+                    <div className="form-group-register">
                         <br/>
                         <input type="text" placeholder="Enter Password" 
                             name="password" value={this.state.password} onChange={this.onChange}></input>
                     </div>
-                    <div className="form-group">
-                        <label>Confirm Password</label>
+
+                    <div className="form-group-register">
                         <br/>
                         <input type="text" placeholder="Re-enter Password" 
                             name="confirmPassword" value={this.state.confirmPassword} onChange={this.onChange}></input>
                     </div>
-                    <div className="form-group">
-                    <label>Account Type</label>
-                    <br/>
-                        <select name="type" value={this.state.value} onChange={this.onChange}>
+
+                    <div className="form-group-acc">
+                    <label>Account Type: </label>
+                    
+                        <select className="select-type" name="type" value={this.state.value} onChange={this.onChange} style={{float:'right'}}>
                             <option value="customer">Customer</option>
                             <option value="business">Business</option>
                         </select>
                     </div>
+
                     {
                         this.state.type === "" ? 
                         <div className="default"></div>
                         : this.state.type === "business" ?
-                            <div className="form-group">
-                                <label>Enter Business Details</label>
+                            <div className="form-group-business">
+                                
                                 <br/>
                                 <input type="text" name="businessName" placeholder="Enter Business Name"
                                     value={this.state.businessName} onChange={this.onChange}></input>
@@ -127,7 +130,7 @@ class SignUp extends Component {
                         : <br/>
                     }
 
-                    <Button type="submit" value="Submit">
+                    <Button type="submit" value="Submit" className="logbtn">
                             Register
                     </Button>
                 </form>
