@@ -3,7 +3,10 @@ import {Button, Col, Container, Form} from "react-bootstrap";
 import CreateChangePassButton from './CreateChangePassButton'
 import Sidebar from '../../Layout/Sidebar/Sidebar.js';
 import './Profile_Details.css';
-import Header from '../../Layout/Navbar/Navbar'
+import Header from '../../Layout/Navbar/Navbar';
+// import SignUp from './SingUp/SingUp.js';
+
+
 
      class Profile_Details extends Component
      {
@@ -43,6 +46,23 @@ import Header from '../../Layout/Navbar/Navbar'
 
              }
 
+         
+    getSingUpData = () => {
+            
+        // Get the data from each element on the form.
+        var submitD = document.getElementById("submitD");
+        submitD.onclick = function(){
+        var email = document.getElementById('txtEmail').value;
+        var password = document.getElementById('txtPass').value;
+
+        document.getElementById("emailD").innerText = email;
+        // document.getElementById("passD").value;
+
+    }
+
+
+}
+
             //  handleClick(event) {
             //     const requestOptions = {
             //         mode:'no-cors',
@@ -60,7 +80,7 @@ import Header from '../../Layout/Navbar/Navbar'
             //         })
             //     };
         
-            //     fetch('http://localhost:8080/api/users/id/Profile_Details', requestOptions)
+            //     fetch('http://localhost:8080/api/users/id', requestOptions)
             //         .then(response => {
             //             console.log(response)
             //         })
@@ -83,6 +103,7 @@ import Header from '../../Layout/Navbar/Navbar'
                             <Form.Group controlId="formBasicEmail">
                             <Form.Label>Email address</Form.Label>
                             <input
+                                id="emailD"
                                 type="email"
                                 className="form-control form-control"
                                 name="email"

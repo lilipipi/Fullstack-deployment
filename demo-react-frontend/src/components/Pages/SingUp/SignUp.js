@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Button, Form, Container, Col, Alert} from "react-bootstrap";
 import './SignUp.css';
 
+
 class SignUp extends Component {
     constructor (props) {
         super(props);
@@ -83,6 +84,7 @@ class SignUp extends Component {
             })
     }
 
+
     render () {
        return (
            <Container className="register">
@@ -92,13 +94,13 @@ class SignUp extends Component {
 
                     <div className="form-group-register">
                         <br/>
-                        <input type="email" placeholder="Enter Email" 
+                        <input id="txtEmail" type="email" placeholder="Enter Email" 
                             name="email" value={this.state.email} onChange={this.onChange}></input>
                     </div>
 
                     <div className="form-group-register">
                         <br/>
-                        <input type="text" placeholder="Enter Password" 
+                        <input id="txtPass" type="text" placeholder="Enter Password" 
                             name="password" value={this.state.password} onChange={this.onChange}></input>
                     </div>
 
@@ -130,7 +132,7 @@ class SignUp extends Component {
                         : <br/>
                     }
 
-                    <Button type="submit" value="Submit" className="logbtn">
+                    <Button id="submitD" type="submit" value="Submit" className="logbtn">
                             Register
                     </Button>
                 </form>
