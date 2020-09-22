@@ -9,6 +9,8 @@ import { Button } from "react-bootstrap";
 
 const url = '/api/appointment/all';
 
+// let ip = require("../../ip.json");
+// const url = "http://" + ip.ip + ":8080/api/appointment/all";
 class Service extends React.Component {
     constructor(props) {
         super(props);
