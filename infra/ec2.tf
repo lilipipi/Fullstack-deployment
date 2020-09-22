@@ -23,3 +23,16 @@ resource "local_file" "save_inventory" {
   content  = data.template_file.inventory.rendered
   filename = "../ansible/inventory.yml"
 }
+
+data "template_file" "ip" {
+  template = "${file("./ip.tpl")}"
+
+  vars = {
+    public_ip = aws_instance.sept_assignment.public_ip
+  }
+}
+
+resource "local_file" "save_ip" {
+  content  = data.template_file.ip.rendered
+  filename = "../demo-react-frontend/src/components/ip.json"
+}
