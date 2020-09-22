@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { Button, Form, Container, Col, Alert} from "react-bootstrap";
 import './SignUp.css';
+import urlAddress from '../../ip.json';
+
+const url = 'http://' + urlAddress.ip + ':8080/api/';
 
 
 class SignUp extends Component {
@@ -46,7 +49,7 @@ class SignUp extends Component {
             })
         };
 
-        fetch('http://localhost:8080/api/users/register', requestOptions)
+        fetch(url+'users/register', requestOptions)
             .then(response => {
                 console.log(response.json());
                 if(response.status === 200 || response.status === 201) {
@@ -132,7 +135,7 @@ class SignUp extends Component {
                         : <br/>
                     }
 
-                    <Button id="submitD" type="submit" value="Submit" className="logbtn">
+                    <Button id="submitD" type="submit" value="Submit" className="logbtn" href="/login">
                             Register
                     </Button>
                 </form>

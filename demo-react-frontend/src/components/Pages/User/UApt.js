@@ -5,7 +5,7 @@ import * as BsIcons from 'react-icons/bs';
 import * as IoIcons from 'react-icons/io';
 import urlAddress from '../../ip.json';
 
-const url = '/api/appointment/';
+const url = 'http://'+urlAddress.ip+':8080/api/appointment/';
 console.log(urlAddress.ip)
 
 

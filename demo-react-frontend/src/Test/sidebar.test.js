@@ -23,6 +23,7 @@ describe("<Sidebar /> Side bar Unit Test", () => {
 
         expect(component.find('ul > li > a').at(1).prop('href')).toBe('/CreateAppo');
     });
+    //test will fail because of incorrect href
     it('should render to User appointment page', () => {
         const component = mount(<Sidebar />);
         const button = component.find('li').first().children(0)

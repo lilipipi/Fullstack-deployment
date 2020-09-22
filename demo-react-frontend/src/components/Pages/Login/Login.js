@@ -3,6 +3,9 @@ import  { Redirect } from 'react-router-dom'
 import { Button, Form, Container, Row } from "react-bootstrap";
 import { FormGroup, FormControl, FormLabel} from "react-bootstrap";
 import './Login.css';
+import urlAddress from '../../ip.json';
+
+const url = 'http://' + urlAddress.ip + ':8080/api/';
 
 class Login extends Component {
     
@@ -63,7 +66,7 @@ class Login extends Component {
             })
         }
         else if(this.state.account === "business") {
-            fetch('http://localhost:8080/api/users/OwnerLogin', requestOptions)
+            fetch(url+'users/OwnerLogin', requestOptions)
             .then(response => {
                 console.log(response.status)
                 console.log(response.json())

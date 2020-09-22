@@ -5,8 +5,9 @@ import * as BsIcons from 'react-icons/bs';
 import * as IoIcons from 'react-icons/io';
 import Sidebar from '../../Layout/Sidebar/Sidebar';
 import Header from '../../Layout/Navbar/Navbar'
+import urlAddress from '../../ip.json';
 
-const url = '/api/appointment';
+const url = 'http://' + urlAddress.ip + ':8080/api/appointment';
 
 class UApt extends Component {
     constructor(props) {
