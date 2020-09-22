@@ -1,5 +1,6 @@
 package com.example.demo.security;
 
+import com.example.demo.domain.BusinessOwner;
 import com.example.demo.domain.User;
 import io.jsonwebtoken.*;
 import org.springframework.security.core.Authentication;
@@ -28,6 +29,27 @@ public class JwtTokenProvider {
         Map<String,Object> claims = new HashMap<>();
         claims.put("id", (Long.toString(user.getId())));
         claims.put("username", user.getUsername());
+
+        return Jwts.builder()
+                .setSubject(userId)
+                .setClaims(claims)
+                .setIssuedAt(now)
+                .setExpiration(expiryDate)
+                .signWith(SignatureAlgorithm.HS512, SECRET)
+                .compact();
+    }
+
+    public String generateBusinessOwnerToken(Authentication authentication){
+        BusinessOwner owner = (BusinessOwner)authentication.getPrincipal();
+        Date now = new Date(System.currentTimeMillis());
+
+        Date expiryDate = new Date(now.getTime()+EXPIRATION_TIME);
+
+        String userId = Long.toString(owner.getId());
+
+        Map<String,Object> claims = new HashMap<>();
+        claims.put("id", (Long.toString(owner.getId())));
+        claims.put("username", owner.getUsername());
 
         return Jwts.builder()
                 .setSubject(userId)

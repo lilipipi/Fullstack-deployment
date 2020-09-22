@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/appointment")
@@ -38,7 +36,9 @@ public class AppointmentController {
 
     @GetMapping("/{appointmentId}")
     public ResponseEntity<?> getAppointmentById(@PathVariable String appointmentId, Principal principal) {
+
         Appointment appointment = appointmentService.findAppointmentByIdentifier(appointmentId, principal.getName());
+
         return new ResponseEntity<Appointment>(appointment, HttpStatus.OK);
     }
 

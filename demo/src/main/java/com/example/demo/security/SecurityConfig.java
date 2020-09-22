@@ -1,5 +1,6 @@
 package com.example.demo.security;
 
+import com.example.demo.services.CustomBusinessOwnerDetailsService;
 import com.example.demo.services.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -15,8 +16,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import static com.example.demo.security.SecurityConstants.H2_URL;
-import static com.example.demo.security.SecurityConstants.SIGN_UP_URLS;
+import static com.example.demo.security.SecurityConstants.*;
 
 @Configuration
 @EnableWebSecurity
@@ -33,6 +33,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private CustomUserDetailsService customUserDetailsService;
 
+    @Autowired
+    private CustomBusinessOwnerDetailsService customBusinessOwnerDetailsService;
+
     @Bean
     public JwtAuthenticationFilter jwtAuthenticationFilter(){ return new JwtAuthenticationFilter(); }
 
@@ -42,6 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(customUserDetailsService).passwordEncoder(bCryptPasswordEncoder);
+        auth.userDetailsService(customBusinessOwnerDetailsService).passwordEncoder(bCryptPasswordEncoder);
     }
 
     @Override
@@ -72,7 +76,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.js"
                 ).permitAll()
                 .antMatchers(SIGN_UP_URLS).permitAll()
+                .antMatchers(OWNER_SIGN_UP_URLS).permitAll()
                 .antMatchers(H2_URL).permitAll()
+                .antMatchers(APPOINTMENT_URLS).hasRole("USER")
+                .antMatchers(APPOINTMENT_TASK_LIST_URLS).hasRole("USER")
                 .anyRequest().authenticated();
 
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);

@@ -1,13 +1,12 @@
 package com.example.demo.web;
 
-import com.example.demo.domain.Appointment;
-import com.example.demo.domain.User;
+import com.example.demo.domain.BusinessOwner;
 import com.example.demo.payload.JWTLoginSuccessResponse;
 import com.example.demo.payload.LoginRequest;
 import com.example.demo.security.JwtTokenProvider;
+import com.example.demo.services.BusinessOwnerService;
 import com.example.demo.services.MapValidationErrorService;
-import com.example.demo.services.UserService;
-import com.example.demo.validator.UserValidator;
+import com.example.demo.validator.BusinessOwnerValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,18 +22,18 @@ import javax.validation.Valid;
 import static com.example.demo.security.SecurityConstants.TOKEN_PREFIX;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/businessOwners")
 @CrossOrigin
-public class UserController {
+public class BusinessOwnerController {
 
     @Autowired
     private MapValidationErrorService mapValidationErrorService;
 
     @Autowired
-    private UserService userService;
+    private BusinessOwnerService businessOwnerService;
 
     @Autowired
-    private UserValidator userValidator;
+    private BusinessOwnerValidator businessOwnerValidator;
 
     @Autowired
     private JwtTokenProvider tokenProvider;
@@ -42,18 +41,11 @@ public class UserController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    @GetMapping("/{id}")
-    public ResponseEntity<?> getUserById(@PathVariable Long id) {
-
-        User user = userService.findUserById(id);
-
-        return new ResponseEntity<User>(user, HttpStatus.OK);
-    }
 
     @PostMapping("/login")
-    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest, BindingResult result){
-//        ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
-//        if(errorMap != null) return errorMap;
+    public ResponseEntity<?> authenticateOwner(@Valid @RequestBody LoginRequest loginRequest, BindingResult result){
+        ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
+        if(errorMap != null) return errorMap;
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -63,28 +55,20 @@ public class UserController {
         );
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwt = TOKEN_PREFIX +  tokenProvider.generateToken(authentication);
+        String jwt = TOKEN_PREFIX + tokenProvider.generateBusinessOwnerToken(authentication);
 
         return ResponseEntity.ok(new JWTLoginSuccessResponse(true, jwt));
     }
-
     @PostMapping("/register")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody User user, BindingResult result){
-        //Validate password matching
-        userValidator.validate(user, result);
+    public ResponseEntity<?> registerOwner(@Valid @RequestBody BusinessOwner owner, BindingResult result){
+        // Validate passwords match
+        businessOwnerValidator.validate(owner, result);
 
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
         if(errorMap != null) return errorMap;
 
-        User newUser = userService.saveUser(user);
+        BusinessOwner newOwner = businessOwnerService.saveBusinessOwner(owner);
 
-        return new ResponseEntity<User>(newUser, HttpStatus.CREATED);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteAppointment(@PathVariable Long id) {
-        User removedUser = userService.deleteUserById(id);
-
-        return new ResponseEntity<String>("User with ID '" + removedUser.getId() + "' deleted successfully", HttpStatus.OK);
+        return new ResponseEntity<BusinessOwner>(newOwner, HttpStatus.CREATED);
     }
 }

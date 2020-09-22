@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-public class User implements UserDetails {
+public class BusinessOwner implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,7 +23,11 @@ public class User implements UserDetails {
     @NotBlank(message = "Username is required")
     @Column(unique = true)
     private String username;
-    @NotBlank(message = "Password field is required")
+
+    @NotBlank(message = "Please enter your company name")
+    private String companyName;
+
+    @NotBlank(message = "Password is required")
     private String password;
 
     @Transient
@@ -32,11 +36,17 @@ public class User implements UserDetails {
     private Date created_At;
     private Date updated_At;
 
-    //1-many with appointment
-    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "user", orphanRemoval = true)
-    private List<Appointment> appointments = new ArrayList<>();
+    @PrePersist
+    protected void onCreate() {
+        this.created_At = new Date();
+    }
 
-    public User() {
+    @PreUpdate
+    protected void onUpdate() {
+        this.updated_At = new Date();
+    }
+
+    public BusinessOwner() {
     }
 
     public Long getId() {
@@ -53,6 +63,14 @@ public class User implements UserDetails {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
     public String getPassword() {
@@ -87,20 +105,16 @@ public class User implements UserDetails {
         this.updated_At = updated_At;
     }
 
-    public List<Appointment> getAppointments() {
-        return appointments;
-    }
+    // UserDetails interface method
 
-    public void setAppointments(List<Appointment> appointments) {
-        this.appointments = appointments;
-    }
 
     @Override
     @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
+
         List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
 
-        list.add(new SimpleGrantedAuthority("ROLE_USER"));
+        list.add(new SimpleGrantedAuthority("ROLE_OWNER"));
 
         return list;
     }
@@ -127,15 +141,5 @@ public class User implements UserDetails {
     @JsonIgnore
     public boolean isEnabled() {
         return true;
-    }
-
-    @PrePersist
-    protected void onCreate() {
-        this.created_At = new Date();
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
-        this.updated_At = new Date();
     }
 }

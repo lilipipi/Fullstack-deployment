@@ -60,21 +60,15 @@ public class AppointmentTaskService {
             return appointmentTaskRepo.save(appointmentTask);
     }
 
-    public Iterable<AppointmentTask>findAppointmentTaskListById(String id){
+    public Iterable<AppointmentTask>findAppointmentTaskListById(String id, String username){
 
-        Appointment appointment = appointmentRepo.findByAppointmentIdentifier(id);
-        if(appointment == null){
-            throw new AppointmentNotFoundException("Appointment with ID: '" + id + "' does not exist");
-        }
+        appointmentService.findAppointmentByIdentifier(id, username);
         return appointmentTaskRepo.findByAppointmentIdentifierOrderByPriority(id);
     }
 
-    public AppointmentTask findTaskByAppointmentSequence(String appointmentTaskList_id, String task_id){
+    public AppointmentTask findTaskByAppointmentSequence(String appointmentTaskList_id, String task_id, String username){
 
-        AppointmentTaskList appointmentTaskList = appointmentTaskListRepo.findByAppointmentIdentifier(appointmentTaskList_id);
-        if(appointmentTaskList == null) {
-            throw new AppointmentNotFoundException("Appointment with ID: '" + appointmentTaskList_id + "' does not exist");
-        }
+        appointmentService.findAppointmentByIdentifier(appointmentTaskList_id, username);
 
         AppointmentTask appointmentTask = appointmentTaskRepo.findByAppointmentSequence(task_id);
         if(appointmentTask == null){
@@ -88,22 +82,16 @@ public class AppointmentTaskService {
         return appointmentTask;
     }
 
-    public AppointmentTask updateByAppointmentSequence(AppointmentTask updatedTask, String appointmentTaskList_id, String task_id){
-        AppointmentTask appointmentTask = findTaskByAppointmentSequence(appointmentTaskList_id, task_id);
+    public AppointmentTask updateByAppointmentSequence(AppointmentTask updatedTask, String appointmentTaskList_id, String task_id, String username){
+        AppointmentTask appointmentTask = findTaskByAppointmentSequence(appointmentTaskList_id, task_id, username);
 
         appointmentTask = updatedTask;
 
         return appointmentTaskRepo.save(appointmentTask);
     }
 
-    public AppointmentTask deleteTaskByAppointmentSequence(String appointmentTaskList_id, String task_id){
-        AppointmentTask appointmentTask = findTaskByAppointmentSequence(appointmentTaskList_id, task_id);
-
-//        AppointmentTaskList appointmentTaskList = appointmentTask.getAppointmentTaskList();
-//        List<AppointmentTask> tasks = appointmentTask.getAppointmentTaskList().getAppointmentTasks();
-//        tasks.remove(appointmentTask);
-//        appointmentTaskListRepo.save(appointmentTaskList);
-
+    public AppointmentTask deleteTaskByAppointmentSequence(String appointmentTaskList_id, String task_id, String username){
+        AppointmentTask appointmentTask = findTaskByAppointmentSequence(appointmentTaskList_id, task_id, username);
         appointmentTaskRepo.delete(appointmentTask);
         return appointmentTask;
     }

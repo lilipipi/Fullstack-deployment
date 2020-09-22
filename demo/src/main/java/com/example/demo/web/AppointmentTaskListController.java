@@ -38,32 +38,32 @@ public class AppointmentTaskListController {
     }
 
     @GetMapping("/{appointmentTaskList_id}")
-    public Iterable<AppointmentTask> getAppointmentAppointmentTaskList(@PathVariable String appointmentTaskList_id){
-       return appointmentTaskService.findAppointmentTaskListById(appointmentTaskList_id);
+    public Iterable<AppointmentTask> getAppointmentAppointmentTaskList(@PathVariable String appointmentTaskList_id, Principal principal){
+       return appointmentTaskService.findAppointmentTaskListById(appointmentTaskList_id, principal.getName());
     }
 
     @GetMapping("/{appointmentTaskList_id}/{task_id}")
-    public ResponseEntity<?> getAppointmentTask(@PathVariable String appointmentTaskList_id, @PathVariable String task_id){
-        AppointmentTask appointmentTask = appointmentTaskService.findTaskByAppointmentSequence(appointmentTaskList_id, task_id);
+    public ResponseEntity<?> getAppointmentTask(@PathVariable String appointmentTaskList_id, @PathVariable String task_id, Principal principal){
+        AppointmentTask appointmentTask = appointmentTaskService.findTaskByAppointmentSequence(appointmentTaskList_id, task_id, principal.getName());
         return new ResponseEntity<AppointmentTask>(appointmentTask, HttpStatus.OK);
     }
 
     @PatchMapping("{appointmentTaskList_id}/{task_id}")
     public ResponseEntity<?> updateAppointmentTask(@Valid @RequestBody AppointmentTask appointmentTask, BindingResult result,
-                                               @PathVariable String appointmentTaskList_id, @PathVariable String task_id){
+                                               @PathVariable String appointmentTaskList_id, @PathVariable String task_id, Principal principal){
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
         if(errorMap != null) {
             return errorMap;
         }
 
-        AppointmentTask updatedTask = appointmentTaskService.updateByAppointmentSequence(appointmentTask, appointmentTaskList_id, task_id);
+        AppointmentTask updatedTask = appointmentTaskService.updateByAppointmentSequence(appointmentTask, appointmentTaskList_id, task_id, principal.getName());
 
         return new ResponseEntity<AppointmentTask>(updatedTask, HttpStatus.OK);
     }
 
     @DeleteMapping("{appointmentTaskList_id}/{task_id}")
-    public ResponseEntity<?> deleteAppointmentTask(@PathVariable String appointmentTaskList_id, @PathVariable String task_id){
-        appointmentTaskService.deleteTaskByAppointmentSequence(appointmentTaskList_id, task_id);
+    public ResponseEntity<?> deleteAppointmentTask(@PathVariable String appointmentTaskList_id, @PathVariable String task_id, Principal principal){
+        appointmentTaskService.deleteTaskByAppointmentSequence(appointmentTaskList_id, task_id, principal.getName());
         return new ResponseEntity<String>("Appointment task '" + task_id + "' was deleted sucessfully", HttpStatus.OK);
     }
 }
