@@ -1,0 +1,27 @@
+- name: Deploy Application
+  hosts: all
+  become: yes
+  vars:
+  tasks:
+    - name: install docker and docker compose
+      become: yes
+      command:
+        chdir: /home/ec2-user/project
+        cmd: ./install_docker.sh
+
+    - name: start docker service
+      become: yes
+      command:
+        cmd: service docker start
+
+    - name: dockerized application
+      become: yes
+      command:
+        chdir: /home/ec2-user/project
+        cmd: ./build.sh
+
+    - name: run the docker container
+      become: yes
+      command:
+        chdir: /home/ec2-user/project
+        cmd: docker-compose up -d
